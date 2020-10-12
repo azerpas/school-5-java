@@ -9,6 +9,8 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
 https://app.diagrams.net    
 https://drive.google.com/file/d/1dVPSjFQF74Z0WybizJRSQcgkDVgsUDgV/view?usp=sharing
 
+![diagram1](https://raw.githubusercontent.com/azerpas/school-5-java/main/diagram.png?token=AETDRFIZTUHY6LSS7IFZUC27RWSOC)
+
 **Entités:**     
 - Forme
 - Image

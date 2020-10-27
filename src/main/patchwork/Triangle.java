@@ -1,5 +1,5 @@
 package main.patchwork;
-
+/*
 public class Triangle extends Forme {
     private Point[] points;
 
@@ -26,3 +26,4 @@ public class Triangle extends Forme {
         return Point.getDistance(points[0], points[1]) + Point.getDistance(points[1], points[2]) + Point.getDistance(points[2], points[0]);
     }
 }
+*/

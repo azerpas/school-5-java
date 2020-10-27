@@ -1,6 +1,5 @@
 package main.patchwork;
-
-import java.util.Arrays;
+/*
 
 public class Rectangle extends Forme {
 
@@ -70,4 +69,6 @@ public class Rectangle extends Forme {
     public double getPerimetre() {
         return Point.getDistance(pointA,pointB)+Point.getDistance(pointB,pointC)+Point.getDistance(pointC,pointD)+Point.getDistance(pointD,pointA);
     }
+
 }
+   */

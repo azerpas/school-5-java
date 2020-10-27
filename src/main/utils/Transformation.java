@@ -1,10 +1,11 @@
 package main.utils;
 
 import main.patchwork.Forme;
+import main.patchwork.Point;
 
 public class Transformation {
     public static void translation(Forme f, final int x, final int y){
-        //f.setX(f.getX()+x);
-        //f.setY(f.getY()+y);
+        Point p = new Point(f.getX()+x, f.getY()+y);
+        Forme forme = new Forme();
     }
 }

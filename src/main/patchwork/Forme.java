@@ -8,6 +8,10 @@ public abstract class Forme{
         this.position = position;
     }
 
+    public Point getPosition() {
+        return position;
+    }
+
     public abstract double getAire();
     public abstract double getPerimetre();
 }

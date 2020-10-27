@@ -18,6 +18,10 @@ public class Dessin {
         return this.images;
     }
 
+    public boolean addImage(Image i){
+        return this.images.add(i);
+    }
+
     public double getAire(){
         return 0.0;
     }

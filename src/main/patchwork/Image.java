@@ -13,4 +13,8 @@ public class Image {
     public Set<Forme> getFormes(){
         return this.formes;
     }
+
+    public boolean addForme(Forme f){
+        return this.formes.add(f);
+    }
 }

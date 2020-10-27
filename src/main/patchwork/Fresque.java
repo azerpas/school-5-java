@@ -13,4 +13,8 @@ public class Fresque {
     public Set<Dessin> getDessins(){
         return this.dessins;
     }
+
+    public boolean addDessin(Dessin d){
+        return this.dessins.add(d);
+    }
 }

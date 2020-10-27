@@ -2,7 +2,9 @@ package main.patchwork;
 
 import java.util.ArrayList;
 
-public class Polygone extends Forme{
+import main.utils.Transformation;
+
+public class Polygone extends Forme implements Transformation{
     private Ligne[] cotes;
     private Point centre;
 
@@ -67,4 +69,35 @@ public class Polygone extends Forme{
         }
         return res;
     }
+
+    @Override
+    public Forme translation(int x, int y) {
+        ArrayList<Point> allPoints = this.getPoints();
+        return null;
+    }
+
+    @Override
+    public Forme homothetie(double k) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme rotation(double angle) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme symetrieCentre(Point p) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme symetrieAxiale(Point p) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

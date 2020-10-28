@@ -133,7 +133,7 @@ public class Polygone extends Forme implements Transformation{
     }
 
     @Override
-    public Forme symetrieAxiale(Point p) {
+    public Forme symetrieAxiale(Ligne l) {
         // TODO Auto-generated method stub
         return null;
     }

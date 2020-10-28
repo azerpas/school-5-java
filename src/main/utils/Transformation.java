@@ -1,6 +1,7 @@
 package main.utils;
 
 import main.patchwork.Forme;
+import main.patchwork.Ligne;
 import main.patchwork.Point;
 
 public interface Transformation {
@@ -12,5 +13,5 @@ public interface Transformation {
 
     public Forme symetrieCentre(Point p);
     
-    public Forme symetrieAxiale(Point p);
+    public Forme symetrieAxiale(Ligne l);
 }

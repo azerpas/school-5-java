@@ -17,4 +17,12 @@ public class Fresque {
     public boolean addDessin(Dessin d){
         return this.dessins.add(d);
     }
+
+    @Override
+    public String toString() {
+        return "Fresque{" +
+                "dessins=\n   " + dessins +
+                "\n}";
+    }
+
 }

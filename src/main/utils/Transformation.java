@@ -9,7 +9,7 @@ public interface Transformation {
 
     public Forme homothetie(double k);
     
-    public Forme rotation(double angle);
+    public Forme rotation(Point p , double angle);
 
     public Forme symetrieCentre(Point p);
     

@@ -52,4 +52,11 @@ public class Ligne extends Forme {
         return points;
     }
 
+    @Override
+    public String toString() {
+        return "Ligne{" +
+                "pointA=" + pointA +
+                ", pointB=" + pointB +
+                '}';
+    }
 }

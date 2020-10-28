@@ -56,18 +56,13 @@ public class Polygone extends Forme implements Transformation{
         Point suivant = null;
         Point first = null;
         Iterator iterator = this.points.iterator();
-        System.out.println("      "+this.points);
         while (iterator.hasNext()){
             precedent = precedent == null ? first = (Point) iterator.next() : precedent;
-            System.out.println("      "+precedent);
             suivant = suivant == null ? (Point) iterator.next() : suivant;
-            System.out.println("      "+res + " + " + precedent.getX() + "*"+ suivant.getY()+ "-"+ precedent.getY()+ "*"+ suivant.getX());
             res += Math.abs(precedent.getX() * suivant.getY() - precedent.getY() * suivant.getX());
             precedent = suivant;
             suivant = (Point) iterator.next();
         }
-        System.out.println("      "+suivant);
-        System.out.println("      "+res + " + " + first.getX() + "*"+ suivant.getY()+ "-"+ first.getY()+ "*"+ suivant.getX());
         res += first.getX() * suivant.getY() - first.getY() * suivant.getX();
 
         return res / 2 ;
@@ -100,9 +95,10 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public String toString() {
-        return "Polygone{" +
-                "points=" + points +
-                '}';
+
+        return super.toString()+"Polygone{" +
+                "points=\n            " + points +
+                "\n         }";
     }
 
     public Forme translation(double x, double y) {
@@ -147,27 +143,31 @@ public class Polygone extends Forme implements Transformation{
     }
 
     @Override
-    public Forme rotation(double angle) {
+    public Forme rotation(Point pRotation,double angle) {
         Point centre = this.getCentre();
         HashSet<Point> newPoints = new HashSet<Point>();
         Forme formeTranslate = this.translation(-centre.getX(), -centre.getY());
         for(Point p : formeTranslate.getPoints()){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
-            double x = p.getX() * Math.cos(angle) - p.getY() * Math.sin(angle);
-            double y = p.getX() * Math.sin(angle) + p.getY() * Math.cos(angle);
-            newPoints.add( 
-                new Point(
-                    centre.getX() + x,
-                    centre.getY() + y
-                )
-            );
+            double x = (p.getX() - pRotation.getX()) * Math.cos(angle) - (p.getY() - pRotation.getY()) * Math.sin(angle) + pRotation.getX();
+            double y = (p.getX() - pRotation.getX()) * Math.sin(angle) - (p.getY() - pRotation.getY()) * Math.cos(angle) + pRotation.getY();
+           /* double x = p.getX() * Math.cos(angle) - p.getY() * Math.sin(angle);
+            double y = p.getX() * Math.sin(angle) + p.getY() * Math.cos(angle);*/
+            newPoints.add(new Point(x,y));
         }
         return new Polygone(newPoints);
     }
 
     @Override
     public Forme symetrieCentre(Point p) {
-        // TODO Auto-generated method stub
-        return null;
+        Point centre = this.getCentre();
+        HashSet<Point> newPoints = new HashSet<Point>();
+        Forme formeTranslate = this.translation(-centre.getX(), -centre.getY());
+        for(Point pCourant : formeTranslate.getPoints()){
+            double x = (pCourant.getX()+p.getX())/2;
+            double y = (pCourant.getY()+p.getY())/2;
+            newPoints.add(new Point(x,y));
+        }
+        return new Polygone(newPoints);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class Main {
         h.add(p30);
         h.add(p33);
         h.add(p03);
-        Polygone carre = new Polygone(h,new Point());
+        Polygone carre = new Polygone(h);
         i.addForme(carre);
 
         System.out.println("Création des côtés d'un Rectangle 00 => 60 => 63 => 03  Normalement : aire = 18");

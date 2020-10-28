@@ -95,11 +95,15 @@ public class Polygone extends Forme implements Transformation{
     public String toString() {
         return "Polygone{" +
                 "points=" + points +
-                ", centre=" + centre +
                 '}';
     }
     public Forme translation(int x, int y) {
-        ArrayList<Point> allPoints = this.getPoints();
+        // (0,0) (0,3) (3,3) (3,0) : Carré de 3x3cm
+        // Somme des X = 6  && Somme des Y = 6
+        // Centre du polygone (6/4,6/4) = (1.5,1.5)
+        // (0,0) (0,3) (3,0)
+        // Somme des X = 3  && Somme des Y = 3
+        // Centre du polygone (3/3,3/3) = (1,1)
         return null;
     }
 

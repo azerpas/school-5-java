@@ -1,19 +1,17 @@
 package main.patchwork;
 
 public class Ellipse extends Forme {
-   private Point centre;
    private Ligne petitAxe;
    private Ligne grandAxe;
 
     public Ellipse(Point centre, Ligne petitAxe, Ligne grandAxe) {
         super(centre);
-        this.centre = centre;
         this.petitAxe = petitAxe;
         this.grandAxe = grandAxe;
     }
 
     public Point getCentre() {
-        return centre;
+        return this.centre;
     }
 
     public void setCentre(Point centre) {
@@ -38,13 +36,13 @@ public class Ellipse extends Forme {
 
     @Override
     public double getAire() {
-        return Math.PI * petitAxe.getLongueur() * grandAxe.getLongueur();
+        return Math.PI * petitAxe.getPerimetre() * grandAxe.getPerimetre();
     }
 
     @Override
     public double getPerimetre() {
-        double a = Math.pow(this.grandAxe.getLongueur(),2);
-        double b = Math.pow(this.petitAxe.getLongueur(),2);
+        double a = Math.pow(this.grandAxe.getPerimetre(),2);
+        double b = Math.pow(this.petitAxe.getPerimetre(),2);
         return 2 * Math.PI * Math.sqrt((a+b)/2);
     }
 }

@@ -21,15 +21,22 @@ public class Polygone extends Forme implements Transformation{
         this.points = points;
     }
 
+    @Override
     public Point getCentre() {
-        return null;
+        double sumX = 0;
+        double sumY = 0;
+        for(Point p : this.points){
+            sumX += p.getX();
+            sumY += p.getY();
+        }
+        return new Point(sumX / this.points.size(), sumY / this.points.size());
     }
 
-    public Set<Point> getpoints() {
+    public Set<Point> getPoints() {
         return this.points;
     }
 
-    public void setpoints(HashSet<Point> points) {
+    public void setPoints(HashSet<Point> points) {
         this.points = points;
     }
 

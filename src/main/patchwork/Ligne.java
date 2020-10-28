@@ -1,6 +1,6 @@
 package main.patchwork;
 
-public class Ligne{
+public class Ligne extends Forme{
     private Point pointA;
     private Point pointB;
 
@@ -25,7 +25,21 @@ public class Ligne{
         this.pointB = pointB;
     }
 
-    public double getLongueur(){
+    @Override
+    public Point getCentre() {
+        return new Point(
+            (this.getPointA().getX() + this.getPointB().getX())/2, 
+            (this.getPointA().getY() + this.getPointB().getY())/2
+        );
+    }    
+    
+    @Override
+    public double getAire() {
+        return 0;
+    }
+
+    @Override
+    public double getPerimetre() {
         return Point.getDistance(this.pointA,this.pointB);
     }
 

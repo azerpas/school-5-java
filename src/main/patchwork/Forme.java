@@ -4,33 +4,33 @@ import java.util.Objects;
 
 public abstract class Forme{
 
-    protected Point position;
+    protected Point centre;
 
     public Forme(){
-        this.position = new Point();
+        this.centre = new Point();
     }
 
-    public Forme(Point position) {
-        this.position = position;
-    }
-
-    public Point getPosition() {
-        return position;
+    public Forme(final Point centre){
+        this.centre = centre;
     }
 
     public abstract double getAire();
     public abstract double getPerimetre();
+
+    public Point getCentre(){
+        return this.centre;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Forme forme = (Forme) o;
-        return Objects.equals(position, forme.position);
+        return Objects.equals(centre, forme.centre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position);
+        return Objects.hash(centre);
     }
 }

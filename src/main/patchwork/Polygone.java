@@ -6,29 +6,23 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Polygone extends Forme{
-    private Set<Point> points;
-    private Point centre;
+import main.utils.Transformation;
 
+public class Polygone extends Forme implements Transformation{
+    private Set<Point> points;
 
     public Polygone() {
         super();
         this.points = new HashSet<>();
     }
 
-    public Polygone(HashSet<Point> points, Point centre) {
-        // tous les points sont reliés ?
-        super(centre);
+    public Polygone(HashSet<Point> points) {
+        super();
         this.points = points;
-        this.centre = centre;
     }
 
     public Point getCentre() {
-        return centre;
-    }
-
-    public void setCentre(Point centre) {
-        this.centre = centre;
+        return null;
     }
 
     public Set<Point> getpoints() {
@@ -104,4 +98,33 @@ public class Polygone extends Forme{
                 ", centre=" + centre +
                 '}';
     }
+    public Forme translation(int x, int y) {
+        ArrayList<Point> allPoints = this.getPoints();
+        return null;
+    }
+
+    @Override
+    public Forme homothetie(double k) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme rotation(double angle) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme symetrieCentre(Point p) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme symetrieAxiale(Point p) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

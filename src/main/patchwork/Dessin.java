@@ -1,6 +1,7 @@
 package main.patchwork;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Dessin {
@@ -23,7 +24,14 @@ public class Dessin {
     }
 
     public double getAire(){
-        return 0.0;
+        int res = 0;
+        Iterator i = this.images.iterator();
+        while(i.hasNext()){
+            double aireImage = ((Image) i.next()).getAire();
+            System.out.println("Aire Image : " + aireImage);
+            res += aireImage;
+        }
+        return res;
     }
 
     public Dessin getCopie(){

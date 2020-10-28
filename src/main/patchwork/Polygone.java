@@ -104,26 +104,64 @@ public class Polygone extends Forme implements Transformation{
                 "points=" + points +
                 '}';
     }
-    public Forme translation(int x, int y) {
-        // (0,0) (0,3) (3,3) (3,0) : Carré de 3x3cm
-        // Somme des X = 6  && Somme des Y = 6
-        // Centre du polygone (6/4,6/4) = (1.5,1.5)
-        // (0,0) (0,3) (3,0)
-        // Somme des X = 3  && Somme des Y = 3
-        // Centre du polygone (3/3,3/3) = (1,1)
-        return null;
+
+    public Forme translation(double x, double y) {
+        HashSet<Point> newPoints = new HashSet<Point>();
+        for(Point p : this.points){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
+            newPoints.add( 
+                new Point(
+                    p.getX() + x, // 5 5 8
+                    p.getY() + y //  5 8 5
+                )
+            );
+        }
+        return new Polygone(newPoints);
     }
 
     @Override
     public Forme homothetie(double k) {
-        // TODO Auto-generated method stub
-        return null;
+
+        // (0,0) (0,3) (3,3) (3,0) : Carré de 3x3cm
+        // Somme des X = 6  && Somme des Y = 6
+        // Centre du polygone (6/4,6/4) = (1.5,1.5)
+        // (0,0) (0,3) (3,0) : Triangle carré en (0,0)
+        // Somme des X = 3  && Somme des Y = 3
+        // Centre du polygone (3/3,3/3) = (1,1)
+
+        Point centre = this.getCentre(); // (1,1)
+        HashSet<Point> newPoints = new HashSet<Point>();
+        for(Point p : this.points){ // (0,0) (0,3) (3,0)
+            newPoints.add( 
+                new Point( // On crée un nouveau point pour chaque ancien point pour la copie défensive
+                    (k * ( p.getX() - centre.getX() )) + centre.getX(), // (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5
+                    (k * ( p.getY() - centre.getY() )) + centre.getY() // (2 * (0 - 1)) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5 && (2 * ( 0 - 1 )) + 1 = 1
+                )
+            );
+        }
+        // Ça scale mais ça ne nous permet pas de déplacer la forme 
+        // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Homothetic_transformation.svg/440px-Homothetic_transformation.svg.png
+        // Il faudrait faire une translation en plus
+
+
+        return new Polygone(newPoints);
     }
 
     @Override
     public Forme rotation(double angle) {
-        // TODO Auto-generated method stub
-        return null;
+        Point centre = this.getCentre();
+        HashSet<Point> newPoints = new HashSet<Point>();
+        Forme formeTranslate = this.translation(-centre.getX(), -centre.getY());
+        for(Point p : formeTranslate.getPoints()){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
+            double x = p.getX() * Math.cos(angle) - p.getY() * Math.sin(angle);
+            double y = p.getX() * Math.sin(angle) + p.getY() * Math.cos(angle);
+            newPoints.add( 
+                new Point(
+                    centre.getX() + x,
+                    centre.getY() + y
+                )
+            );
+        }
+        return new Polygone(newPoints);
     }
 
     @Override

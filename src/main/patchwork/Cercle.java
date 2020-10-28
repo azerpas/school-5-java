@@ -1,6 +1,9 @@
 package main.patchwork;
 
-public class Cercle extends Forme{
+import java.util.HashSet;
+import java.util.Set;
+
+public class Cercle extends Forme {
 
     private Point centre;
     private int rayon;
@@ -35,5 +38,12 @@ public class Cercle extends Forme{
     @Override
     public double getPerimetre() {
         return Math.PI*2*this.rayon;
+    }
+
+    @Override
+    public Set<Point> getPoints() {
+        HashSet<Point> points = new HashSet<Point>();
+        points.add(this.getCentre());
+        return points;
     }
 }

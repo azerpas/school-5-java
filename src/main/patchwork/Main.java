@@ -1,6 +1,5 @@
 package main.patchwork;
 
-import java.util.Collection;
 import java.util.HashSet;
 
 public class Main {

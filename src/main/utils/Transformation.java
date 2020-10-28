@@ -4,7 +4,7 @@ import main.patchwork.Forme;
 import main.patchwork.Point;
 
 public interface Transformation {
-    public Forme translation(final int x, final int y);
+    public Forme translation(final double x, final double y);
 
     public Forme homothetie(double k);
     

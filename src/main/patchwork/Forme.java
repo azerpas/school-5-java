@@ -1,6 +1,7 @@
 package main.patchwork;
 
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class Forme{
 
@@ -16,6 +17,7 @@ public abstract class Forme{
 
     public abstract double getAire();
     public abstract double getPerimetre();
+    public abstract Set<Point> getPoints();
 
     public Point getCentre(){
         return this.centre;

@@ -1,6 +1,9 @@
 package main.patchwork;
 
-public class Ligne extends Forme{
+import java.util.HashSet;
+import java.util.Set;
+
+public class Ligne extends Forme {
     private Point pointA;
     private Point pointB;
 
@@ -27,12 +30,10 @@ public class Ligne extends Forme{
 
     @Override
     public Point getCentre() {
-        return new Point(
-            (this.getPointA().getX() + this.getPointB().getX())/2, 
-            (this.getPointA().getY() + this.getPointB().getY())/2
-        );
-    }    
-    
+        return new Point((this.getPointA().getX() + this.getPointB().getX()) / 2,
+                (this.getPointA().getY() + this.getPointB().getY()) / 2);
+    }
+
     @Override
     public double getAire() {
         return 0;
@@ -40,7 +41,15 @@ public class Ligne extends Forme{
 
     @Override
     public double getPerimetre() {
-        return Point.getDistance(this.pointA,this.pointB);
+        return Point.getDistance(this.pointA, this.pointB);
+    }
+
+    @Override
+    public Set<Point> getPoints() {
+        HashSet<Point> points = new HashSet<Point>();
+        points.add(pointA);
+        points.add(pointB);
+        return points;
     }
 
 }

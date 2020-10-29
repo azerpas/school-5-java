@@ -83,15 +83,15 @@ public class Ligne extends Forme implements Transformation {
     }
 
     @Override
-    public Forme rotation(double angle) {
-        Point centre = this.getCentre();
+    public Forme rotation(Point p, double angle) {
+        //Point centre = this.getCentre();
         Point A = new Point(
-            centre.getX() + (pointA.getX() * Math.cos(angle) - pointA.getY() * Math.sin(angle)),
-            centre.getY() + (pointA.getX() * Math.sin(angle) + pointA.getY() * Math.cos(angle))
+            p.getX() + (pointA.getX() * Math.cos(angle) - pointA.getY() * Math.sin(angle)),
+            p.getY() + (pointA.getX() * Math.sin(angle) + pointA.getY() * Math.cos(angle))
         );
         Point B = new Point(
-            centre.getX() + (pointB.getX() * Math.cos(angle) - pointB.getY() * Math.sin(angle)),
-            centre.getY() + (pointB.getX() * Math.sin(angle) + pointB.getY() * Math.cos(angle))
+            p.getX() + (pointB.getX() * Math.cos(angle) - pointB.getY() * Math.sin(angle)),
+            p.getY() + (pointB.getX() * Math.sin(angle) + pointB.getY() * Math.cos(angle))
         );
         return new Ligne(A,B);
     }
@@ -103,7 +103,7 @@ public class Ligne extends Forme implements Transformation {
     }
 
     @Override
-    public Forme symetrieAxiale(Point p) {
+    public Forme symetrieAxiale(Ligne p) {
         // TODO Auto-generated method stub
         return null;
     }

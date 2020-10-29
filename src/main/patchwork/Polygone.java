@@ -1,7 +1,5 @@
 package main.patchwork;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -55,7 +53,7 @@ public class Polygone extends Forme implements Transformation{
         Point precedent = null;
         Point suivant = null;
         Point first = null;
-        Iterator iterator = this.points.iterator();
+        Iterator<Point> iterator = this.points.iterator();
         while (iterator.hasNext()){
             precedent = precedent == null ? first = (Point) iterator.next() : precedent;
             suivant = suivant == null ? (Point) iterator.next() : suivant;
@@ -87,9 +85,9 @@ public class Polygone extends Forme implements Transformation{
     @Override
     public double getPerimetre() {
         double res = 0;
-        for (Point p:this.points) {
+        //for (Point p:this.points) {
             //res += p.getLongueur();
-        }
+        //}
         return res;
     }
 

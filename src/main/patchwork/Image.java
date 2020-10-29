@@ -17,7 +17,7 @@ public class Image {
     }
     public double getAire(){
         int res = 0;
-        Iterator i = this.formes.iterator();
+        Iterator<Forme> i = this.formes.iterator();
 
         System.out.println("   "+"------------------------------------------- ");
         while(i.hasNext()){

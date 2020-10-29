@@ -26,7 +26,7 @@ public class Dessin {
 
     public double getAire(){
         int res = 0;
-        Iterator i = this.images.iterator();
+        Iterator<Image> i = this.images.iterator();
         while(i.hasNext()){
             double aireImage = ((Image) i.next()).getAire();
             System.out.println("Aire Image : " + aireImage);

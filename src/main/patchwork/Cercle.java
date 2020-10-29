@@ -44,7 +44,7 @@ public class Cercle extends Forme  implements Transformation {
 
     @Override
     public Set<Point> getPoints() {
-        HashSet res = new HashSet<Point>();
+        HashSet<Point> res = new HashSet<Point>();
         res.add(this.centre);
         return res;
     }

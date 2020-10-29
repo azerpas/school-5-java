@@ -35,4 +35,11 @@ public abstract class Forme{
     public int hashCode() {
         return Objects.hash(centre);
     }
+
+    @Override
+    public String toString() {
+        return "Forme{" +
+                "centre=" + centre +
+                '}';
+    }
 }

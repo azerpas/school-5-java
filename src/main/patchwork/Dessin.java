@@ -2,6 +2,7 @@ package main.patchwork;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 
 public class Dessin {
@@ -38,4 +39,23 @@ public class Dessin {
         return new Dessin(this.images);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dessin dessin = (Dessin) o;
+        return Objects.equals(images, dessin.images);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(images);
+    }
+
+    @Override
+    public String toString() {
+        return "Dessin{" +
+                "images=\n      " + images +
+                "\n   }";
+    }
 }

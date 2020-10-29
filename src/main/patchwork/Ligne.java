@@ -55,6 +55,13 @@ public class Ligne extends Forme implements Transformation {
     }
 
     @Override
+    public String toString() {
+        return "Ligne{" +
+                "pointA=" + pointA +
+                ", pointB=" + pointB +
+                '}';
+    }
+    @Override
     public Forme translation(double x, double y) {
         Point A = new Point(this.getPointA().getX() + x, this.getPointA().getY() + y);
         Point B = new Point(this.getPointB().getX() + x, this.getPointB().getY() + y);
@@ -100,5 +107,4 @@ public class Ligne extends Forme implements Transformation {
         // TODO Auto-generated method stub
         return null;
     }
-
 }

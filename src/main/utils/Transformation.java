@@ -7,7 +7,7 @@ import main.patchwork.Point;
 public interface Transformation {
     public Forme translation(final double x, final double y);
 
-    public Forme homothetie(double k);
+    public Forme homothetie(Point p, double k);
     
     public Forme rotation(Point p , double angle);
 

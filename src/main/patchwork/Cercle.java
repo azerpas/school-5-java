@@ -55,8 +55,8 @@ public class Cercle extends Forme  implements Transformation {
     }
 
     @Override
-    public Forme homothetie(double k) {
-        return new Cercle(this.centre,this.rayon * k);
+    public Forme homothetie(Point p, double k) {
+        return new Cercle(p,this.rayon * k);
     }
 
     @Override

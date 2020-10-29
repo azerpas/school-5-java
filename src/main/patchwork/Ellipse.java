@@ -64,7 +64,7 @@ public class Ellipse extends Forme implements Transformation {
     }
 
     @Override
-    public Forme homothetie(double k) {
+    public Forme homothetie(Point p,double k) {
         Point pointAA = new Point(
                 (k * ( this.petitAxe.getPointA().getX() - this.centre.getX() )) + this.centre.getX(),
                 (k * (  this.petitAxe.getPointA().getY() - this.centre.getY() )) + this.centre.getY()

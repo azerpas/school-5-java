@@ -73,7 +73,7 @@ public class Main {
         System.out.println("APRES TRANSLATION : " + c.translation(2,1));
         System.out.println("################");
         System.out.println("AVANT : "+ c);
-        System.out.println("APRES HOMOTHETIE : " + c.homothetie(5));
+        System.out.println("APRES HOMOTHETIE : " + c.homothetie(new Point(6,1),5));
         System.out.println("################");
         System.out.println("AVANT : "+ Math.sin(360)+" " + Math.cos(360));
         System.out.println("APRES ROTATION : "+ c.rotation(new Point(2,1),90));

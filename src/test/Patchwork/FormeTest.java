@@ -36,4 +36,16 @@ public class FormeTest {
     public void polygoneAire(){
         assertEquals(4.5, p.getAire());
     }
+
+    @Test
+    @DisplayName("Vérifier le centre d'un polygone")
+    public void polygoneCentre(){
+        assertEquals(new Point(1,1), p.getCentre());
+    }
+
+    @Test
+    @DisplayName("Vérifier l'homothétie d'un polygone")
+    public void polygoneHomothetie(){
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0, 0), new Point(8, 5), new Point(5, 8))), p.homothetie(new Point(-1,-1),2).getPoints());
+    }
 }

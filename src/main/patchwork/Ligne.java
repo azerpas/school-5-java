@@ -69,17 +69,17 @@ public class Ligne extends Forme implements Transformation {
     }
 
     @Override
-    public Forme homothetie(double k) {
-        Point centre = this.getCentre();
+    public Forme homothetie(Point p, double k) {
+        //Point centre = this.getCentre();
         Point A = new Point(
-            (k * ( pointA.getX() - centre.getX() )) + centre.getX(),
-            (k * ( pointA.getY() - centre.getY() )) + centre.getY()
+            (k * ( pointA.getX() - p.getX() )) + p.getX(),
+            (k * ( pointA.getY() - p.getY() )) + p.getY()
         );
         Point B = new Point(
-            (k * ( pointB.getX() - centre.getX() )) + centre.getX(),
-            (k * ( pointB.getY() - centre.getY() )) + centre.getY()
+            (k * ( pointB.getX() - p.getX() )) + p.getX(),
+            (k * ( pointB.getY() - p.getY() )) + p.getY()
         );
-        return (new Ligne(A, B).translation(centre.getX() + k, centre.getY() + k));
+        return (new Ligne(A, B).translation(p.getX() + k, p.getY() + k));
     }
 
     @Override

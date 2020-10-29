@@ -114,7 +114,7 @@ public class Polygone extends Forme implements Transformation{
     }
 
     @Override
-    public Forme homothetie(double k) {
+    public Forme homothetie(Point point, double k) {
 
         // (0,0) (0,3) (3,3) (3,0) : Carré de 3x3cm
         // Somme des X = 6  && Somme des Y = 6
@@ -123,20 +123,29 @@ public class Polygone extends Forme implements Transformation{
         // Somme des X = 3  && Somme des Y = 3
         // Centre du polygone (3/3,3/3) = (1,1)
 
-        Point centre = this.getCentre(); // (1,1)
+        //Point centre = this.getCentre(); // (1,1)
         HashSet<Point> newPoints = new HashSet<Point>();
         for(Point p : this.points){ // (0,0) (0,3) (3,0)
-            newPoints.add( 
-                new Point( // On crée un nouveau point pour chaque ancien point pour la copie défensive
-                    (k * ( p.getX() - centre.getX() )) + centre.getX(), // (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5
-                    (k * ( p.getY() - centre.getY() )) + centre.getY() // (2 * (0 - 1)) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5 && (2 * ( 0 - 1 )) + 1 = 1
-                )
-            );
+            if(p.getX() == 0.0 && p.getY() == 0.0){
+                newPoints.add( 
+                    new Point( // scale par 0
+                        k * p.getX() , // 0
+                        k * p.getY() // 0
+                    )
+                );
+            }else{
+                newPoints.add( 
+                    new Point( // On crée un nouveau point pour chaque ancien point pour la copie défensive
+                        (k * ( p.getX() - point.getX() )) + point.getX(), // (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5
+                        (k * ( p.getY() - point.getY() )) + point.getY() // (2 * (0 - 1)) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5 && (2 * ( 0 - 1 )) + 1 = 1
+                    )
+                );
+            }
         }
         // Ça scale mais ça ne nous permet pas de déplacer la forme 
         // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Homothetic_transformation.svg/440px-Homothetic_transformation.svg.png
         // Il faudrait faire une translation en plus
-        return (new Polygone(newPoints).translation(centre.getX() + k, centre.getY() + k));
+        return (new Polygone(newPoints)/*.translation(centre.getX() + k, centre.getY() + k)*/);
     }
 
     @Override

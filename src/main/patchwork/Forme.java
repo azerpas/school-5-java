@@ -15,10 +15,26 @@ public abstract class Forme{
         this.centre = centre;
     }
 
+    /**
+     * Get the form area
+     * @return the area
+     */
     public abstract double getAire();
+    /**
+     * Get the form perimeter
+     * @return the perimeter
+     */
     public abstract double getPerimetre();
+    /**
+     * Get the form points
+     * @return a set of points
+     */
     public abstract Set<Point> getPoints();
 
+    /**
+     * Get the form center
+     * @return the center as a Point entity
+     */
     public Point getCentre(){
         return this.centre;
     }

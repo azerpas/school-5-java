@@ -11,7 +11,7 @@ public class Polygone extends Forme implements Transformation{
 
     public Polygone() {
         super();
-        this.points = new HashSet<>();
+        this.points = new HashSet<Point>();
     }
 
     public Polygone(HashSet<Point> points) {

@@ -3,7 +3,9 @@ package main.patchwork;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Ligne extends Forme {
+import main.utils.Transformation;
+
+public class Ligne extends Forme implements Transformation {
     private Point pointA;
     private Point pointB;
 
@@ -50,6 +52,53 @@ public class Ligne extends Forme {
         points.add(pointA);
         points.add(pointB);
         return points;
+    }
+
+    @Override
+    public Forme translation(double x, double y) {
+        Point A = new Point(this.getPointA().getX() + x, this.getPointA().getY() + y);
+        Point B = new Point(this.getPointB().getX() + x, this.getPointB().getY() + y);
+        return new Ligne(A,B);
+    }
+
+    @Override
+    public Forme homothetie(double k) {
+        Point centre = this.getCentre();
+        Point A = new Point(
+            (k * ( pointA.getX() - centre.getX() )) + centre.getX(),
+            (k * ( pointA.getY() - centre.getY() )) + centre.getY()
+        );
+        Point B = new Point(
+            (k * ( pointB.getX() - centre.getX() )) + centre.getX(),
+            (k * ( pointB.getY() - centre.getY() )) + centre.getY()
+        );
+        return (new Ligne(A, B).translation(centre.getX() + k, centre.getY() + k));
+    }
+
+    @Override
+    public Forme rotation(double angle) {
+        Point centre = this.getCentre();
+        Point A = new Point(
+            centre.getX() + (pointA.getX() * Math.cos(angle) - pointA.getY() * Math.sin(angle)),
+            centre.getY() + (pointA.getX() * Math.sin(angle) + pointA.getY() * Math.cos(angle))
+        );
+        Point B = new Point(
+            centre.getX() + (pointB.getX() * Math.cos(angle) - pointB.getY() * Math.sin(angle)),
+            centre.getY() + (pointB.getX() * Math.sin(angle) + pointB.getY() * Math.cos(angle))
+        );
+        return new Ligne(A,B);
+    }
+
+    @Override
+    public Forme symetrieCentre(Point p) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Forme symetrieAxiale(Point p) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

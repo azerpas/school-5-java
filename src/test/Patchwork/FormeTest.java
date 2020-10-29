@@ -1,6 +1,6 @@
 package test.Patchwork;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import main.patchwork.Ligne;

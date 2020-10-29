@@ -15,6 +15,7 @@ public class Cercle extends Forme  implements Transformation {
 
     public Cercle(Point centre, double rayon) {
         super(centre);
+        System.out.println("CENTRE : "+centre);
         this.rayon = rayon;
     }
 
@@ -71,9 +72,8 @@ public class Cercle extends Forme  implements Transformation {
 
     @Override
     public Forme symetrieCentre(Point p) {
-        this.centre.setX((this.centre.getX()+p.getX())/2);
-        this.centre.setY((this.centre.getY()+p.getY())/2);
-        return new Cercle(this.centre,this.rayon);
+        Point newCentre = new Point((this.centre.getX()+p.getX())/2,(this.centre.getY()+p.getY())/2);
+        return new Cercle(newCentre,this.rayon);
     }
 
     @Override

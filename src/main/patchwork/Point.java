@@ -2,6 +2,9 @@ package main.patchwork;
 
 import java.util.Objects;
 
+/**
+ * Represents a Point
+ */
 public class Point {
 
     private double x;

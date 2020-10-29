@@ -11,7 +11,7 @@ import main.utils.Transformation;
  */
 public class Polygone extends Forme implements Transformation{
     /**
-     * Set of Points forming the Polygon
+     * Set of Points shaping the Polygon
      */
     private Set<Point> points;
 
@@ -23,10 +23,6 @@ public class Polygone extends Forme implements Transformation{
     public Polygone(HashSet<Point> points) {
         super();
         this.points = points;
-    }
-
-    public Set<Point> getPoints() {
-        return this.points;
     }
 
     public void setPoints(HashSet<Point> points) {
@@ -77,6 +73,11 @@ public class Polygone extends Forme implements Transformation{
         res += first.getX() * suivant.getY() - first.getY() * suivant.getX();
 
         return res / 2 ;
+    }
+
+    @Override
+    public Set<Point> getPoints() {
+        return this.points;
     }
 
     @Override

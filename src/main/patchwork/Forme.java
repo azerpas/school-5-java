@@ -3,6 +3,9 @@ package main.patchwork;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * An abstract class representing all the Geometric Forms of an Image
+ */
 public abstract class Forme{
 
     protected Point centre;

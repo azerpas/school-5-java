@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents a Circle form
+ */
 public class Cercle extends Forme  implements Transformation {
 
     private double rayon;

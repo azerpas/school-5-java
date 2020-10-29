@@ -8,8 +8,10 @@ public class Menu {
         int choix = sc.nextInt();
         if(choix < 0){
             System.out.print("Erreur.\nEntrez un numéro du menu: ");
+            sc.close();
             return chooseMenu();
         }
+        sc.close();
         return choix;
     }
 

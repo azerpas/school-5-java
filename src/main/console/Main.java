@@ -1,7 +1,5 @@
 package main.console;
 
-import java.util.Scanner;
-
 import main.patchwork.Dessin;
 import main.patchwork.Fresque;
 import main.patchwork.Image;

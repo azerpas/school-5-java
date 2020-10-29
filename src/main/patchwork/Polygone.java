@@ -101,6 +101,7 @@ public class Polygone extends Forme implements Transformation{
                 "\n         }";
     }
 
+    @Override
     public Forme translation(double x, double y) {
         HashSet<Point> newPoints = new HashSet<Point>();
         for(Point p : this.points){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
@@ -137,9 +138,7 @@ public class Polygone extends Forme implements Transformation{
         // Ça scale mais ça ne nous permet pas de déplacer la forme 
         // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Homothetic_transformation.svg/440px-Homothetic_transformation.svg.png
         // Il faudrait faire une translation en plus
-
-
-        return new Polygone(newPoints);
+        return (new Polygone(newPoints).translation(centre.getX() + k, centre.getY() + k));
     }
 
     @Override

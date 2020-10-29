@@ -5,6 +5,9 @@ import main.utils.Transformation;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Represents an Ellipse form
+ */
 public class Ellipse extends Forme implements Transformation {
     private Ligne petitAxe;
     private Ligne grandAxe;

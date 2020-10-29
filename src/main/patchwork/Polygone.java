@@ -6,7 +6,13 @@ import java.util.Set;
 
 import main.utils.Transformation;
 
+/**
+ * Represents a Polygon form
+ */
 public class Polygone extends Forme implements Transformation{
+    /**
+     * Set of Points shaping the Polygon
+     */
     private Set<Point> points;
 
     public Polygone() {
@@ -19,21 +25,6 @@ public class Polygone extends Forme implements Transformation{
         this.points = points;
     }
 
-    @Override
-    public Point getCentre() {
-        double sumX = 0;
-        double sumY = 0;
-        for(Point p : this.points){
-            sumX += p.getX();
-            sumY += p.getY();
-        }
-        return new Point(sumX / this.points.size(), sumY / this.points.size());
-    }
-
-    public Set<Point> getPoints() {
-        return this.points;
-    }
-
     public void setPoints(HashSet<Point> points) {
         this.points = points;
     }
@@ -41,6 +32,24 @@ public class Polygone extends Forme implements Transformation{
 
     public void addPoint(Point p){
         this.points.add(p);
+    }
+
+    /* 
+        TODO: DELETE??
+    */
+    public double area()
+    {
+        System.out.print("      AREA : ");
+        Object[] arrayPoints =  this.points.toArray();
+        double total = 0;
+        for(int i=0;i<arrayPoints.length;i++)
+        {
+            int j = (i+1)%arrayPoints.length;
+            Point pointCourant = (Point) arrayPoints[i];
+            Point pointSuivant = (Point) arrayPoints[j];
+            total += (pointCourant.getX()*pointSuivant.getY()) - (pointSuivant.getX()*pointCourant.getY());
+        }
+        return total / 2;
     }
 
     @Override
@@ -66,20 +75,20 @@ public class Polygone extends Forme implements Transformation{
         return res / 2 ;
     }
 
+    @Override
+    public Set<Point> getPoints() {
+        return this.points;
+    }
 
-    public double area()
-    {
-        System.out.print("      AREA : ");
-        Object[] arrayPoints =  this.points.toArray();
-        double total = 0;
-        for(int i=0;i<arrayPoints.length;i++)
-        {
-            int j = (i+1)%arrayPoints.length;
-            Point pointCourant = (Point) arrayPoints[i];
-            Point pointSuivant = (Point) arrayPoints[j];
-            total += (pointCourant.getX()*pointSuivant.getY()) - (pointSuivant.getX()*pointCourant.getY());
+    @Override
+    public Point getCentre() {
+        double sumX = 0;
+        double sumY = 0;
+        for(Point p : this.points){
+            sumX += p.getX();
+            sumY += p.getY();
         }
-        return total / 2;
+        return new Point(sumX / this.points.size(), sumY / this.points.size());
     }
 
     @Override

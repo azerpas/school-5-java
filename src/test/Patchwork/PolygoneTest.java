@@ -3,8 +3,10 @@ package test.Patchwork;
 import main.patchwork.Point;
 import main.patchwork.Polygone;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -119,5 +121,15 @@ class PolygoneTest {
 
     @Test
     void symetrieAxiale() {
+    }
+
+    @Test
+    @DisplayName("Vérifie que les points sont triés en horloge")
+    void sortedPoints(){
+        Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
+        assertEquals(
+            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,3), new Point(3,0))),
+            trigl.getSortedPoints()
+        );
     }
 }

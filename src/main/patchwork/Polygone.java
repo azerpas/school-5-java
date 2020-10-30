@@ -1,7 +1,9 @@
 package main.patchwork;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import main.utils.Transformation;
@@ -142,13 +144,10 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public Forme rotation(Point pRotation,double angle) {
-        //Point centre = this.getCentre();
         HashSet<Point> newPoints = new HashSet<Point>();
 
         Forme formeTranslate = this.translation(-pRotation.getX(), -pRotation.getY());
         for(Point p : formeTranslate.getPoints()){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
-            //double x = (p.getX() - pRotation.getX()) * Math.cos(angle) - (p.getY() - pRotation.getY()) * Math.sin(angle) + pRotation.getX();
-            //double y = (p.getX() - pRotation.getX()) * Math.sin(angle) - (p.getY() - pRotation.getY()) * Math.cos(angle) + pRotation.getY();
             double x = p.getX() * Math.cos(Math.toRadians(angle)) - p.getY() * Math.sin(Math.toRadians(angle));
             double y = p.getX() * Math.sin(Math.toRadians(angle)) + p.getY() * Math.cos(Math.toRadians(angle));
             newPoints.add(new Point(Math.round(x) + pRotation.getX(), Math.round(y) + pRotation.getY()));
@@ -173,6 +172,54 @@ public class Polygone extends Forme implements Transformation{
     public Forme symetrieAxiale(Ligne l) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public List<Point> getSortedPoints(){
+        Iterator<Point> iterator = this.points.iterator();
+        ArrayList<Point> pointsTries = new ArrayList<Point>();
+        while (iterator.hasNext()){
+            Point courant = iterator.next();
+            System.out.println("Courant point: "+courant.getX()+"-"+courant.getY());
+            if(pointsTries.size() == 0) pointsTries.add(courant);
+            else{
+                System.out.println(pointsTries);
+                for (int i = 0; i < pointsTries.size(); i++) {
+                    Point point = pointsTries.get(i);
+                    if(this.less(courant, point)){ 
+                        System.out.println(courant.getX()+"-"+courant.getY()+">"+point.getX()+"-"+point.getY());
+                        pointsTries.add(courant);
+                        break;
+                    }else{
+                        System.out.println(courant.getX()+"-"+courant.getY()+"<"+point.getX()+"-"+point.getY());
+                    }
+                }
+            }
+        }
+        return pointsTries;
+    }
+
+    public boolean less(Point a, Point b)
+    {
+        Point centre = this.getCentre();
+        if (a.getX() - centre.getX() >= 0 && b.getX() - centre.getX() < 0)
+            return true;
+        if (a.getX() - centre.getX() < 0 && b.getX() - centre.getX() >= 0)
+            return false;
+        if (a.getX() - centre.getX() == 0 && b.getX() - centre.getX() == 0) {
+            if (a.getY() - centre.getY() >= 0 || b.getY() - centre.getY() >= 0)
+                return a.getY() > b.getY();
+            return b.getY() > a.getY();
+        }
+
+        double det = (a.getX() - centre.getX()) * (b.getY() - centre.getY()) - (b.getX() - centre.getX()) * (a.getY() - centre.getY());
+        if (det < 0)
+            return true;
+        if (det > 0)
+            return false;
+
+        double d1 = (a.getX() - centre.getX()) * (a.getX() - centre.getX()) + (a.getY() - centre.getY()) * (a.getY() - centre.getY());
+        double d2 = (b.getX() - centre.getX()) * (b.getX() - centre.getX()) + (b.getY() - centre.getY()) * (b.getY() - centre.getY());
+        return d1 > d2;
     }
 
 }

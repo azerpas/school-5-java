@@ -63,21 +63,5 @@ public class Main {
         System.out.println("Affichage de la fresque");
         System.out.println(f.toString());
 
-
-        Cercle c = new Cercle(new Point(6,1),1);
-        Ligne l = new Ligne(new Point(3,1),new Point(4,5));
-        System.out.println("AVANT : "+ c);
-        System.out.println("APRES Symetrye Axiale : " + c.symetrieAxiale(l));
-        System.out.println("################");
-        System.out.println("AVANT : "+ c);
-        System.out.println("APRES TRANSLATION : " + c.translation(2,1));
-        System.out.println("################");
-        System.out.println("AVANT : "+ c);
-        System.out.println("APRES HOMOTHETIE : " + c.homothetie(new Point(6,1),5));
-        System.out.println("################");
-        System.out.println("AVANT : "+ Math.sin(360)+" " + Math.cos(360));
-        System.out.println("APRES ROTATION : "+ c.rotation(new Point(2,1),90));
-
-
     }
 }

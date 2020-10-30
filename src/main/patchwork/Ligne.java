@@ -1,6 +1,7 @@
 package main.patchwork;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import main.utils.Transformation;
@@ -63,8 +64,23 @@ public class Ligne extends Forme implements Transformation {
     }
     @Override
     public Forme translation(double x, double y) {
-        Point A = new Point(this.getPointA().getX() + x, this.getPointA().getY() + y);
-        Point B = new Point(this.getPointB().getX() + x, this.getPointB().getY() + y);
+        /*
+         pAA = new Point(8,6);
+        pAB = new Point(12,6);
+        pBA = new Point(10,0);
+        pBB = new Point(10,12);
+        e = new Ellipse(new Point(10,6),new Ligne(pAA,pAB),new Ligne(pBA,pBB));
+
+        centre de l'ellipse (10 , 6)
+        petitAxe : (8,6) (12,6)
+        petitAxe : (10,0) (10,12)
+
+        resultat normalement :
+        centre de l'ellipse (x,y)
+        petitAxe : (8 +/- x , 6 +/- y
+         */
+        Point A = new Point(this.getPointA().getX()+x,this.getPointA().getY()+y);
+        Point B =new Point(this.getPointB().getX()+y,this.getPointB().getY()+y);
         return new Ligne(A,B);
     }
 
@@ -106,5 +122,20 @@ public class Ligne extends Forme implements Transformation {
     public Forme symetrieAxiale(Ligne p) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Ligne ligne = (Ligne) o;
+        return Objects.equals(pointA, ligne.pointA) &&
+                Objects.equals(pointB, ligne.pointB);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), pointA, pointB);
     }
 }

@@ -34,23 +34,6 @@ public class Polygone extends Forme implements Transformation{
         this.points.add(p);
     }
 
-    /* 
-        TODO: DELETE??
-    */
-    public double area()
-    {
-        System.out.print("      AREA : ");
-        Object[] arrayPoints =  this.points.toArray();
-        double total = 0;
-        for(int i=0;i<arrayPoints.length;i++)
-        {
-            int j = (i+1)%arrayPoints.length;
-            Point pointCourant = (Point) arrayPoints[i];
-            Point pointSuivant = (Point) arrayPoints[j];
-            total += (pointCourant.getX()*pointSuivant.getY()) - (pointSuivant.getX()*pointCourant.getY());
-        }
-        return total / 2;
-    }
 
     @Override
     public double getAire() {

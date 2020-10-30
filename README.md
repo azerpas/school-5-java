@@ -29,7 +29,7 @@ Pour itérer, il faut des collections itérables!
 
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
-translation       |   [x]  |    [x]   |   [x]   |
+translation       |   - [X]  |    [x]   |   [x]   |
 homothetie        |   [ ]  |    [ ]   |   [ ]   |
 symetrie axiale   |   [x]  |    [ ]   |   [ ]   |
 symetrie centrale |   [x]  |    [ ]   |   [ ]   |

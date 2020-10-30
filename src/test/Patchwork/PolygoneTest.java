@@ -1,5 +1,6 @@
 package test.Patchwork;
 
+import main.patchwork.Ligne;
 import main.patchwork.Point;
 import main.patchwork.Polygone;
 import org.junit.jupiter.api.BeforeEach;
@@ -128,16 +129,20 @@ class PolygoneTest {
 
     @Test
     void symetrieAxiale() {
-        assertFalse(true);
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(-6,3), new Point(-6, 0))), rectangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(-3,3), new Point(-3, 0))), carre.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-3,0), new Point(-3,3))), triangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
     }
 
     @Test
     @DisplayName("Vérifie que les points sont triés en horloge")
     void sortedPoints(){
-        Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
+
+        //Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
+        System.out.println(carre);
         assertEquals(
-            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,3), new Point(3,0))),
-            trigl.getSortedPoints()
+            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(3,0), new Point(3,3), new Point(0,3))),
+            carre.getSortedPoints()
         );
     }
 }

@@ -13,25 +13,35 @@ public class Cercle extends Forme  implements Transformation {
 
     private Point pCercle;
 
+    /**
+     * @param centre  : centre du cercle
+     * @param pCercle : point sur le cercle
+     * COnstructeur
+     */
     public Cercle(Point centre, Point pCercle) {
         super(centre);
-        // Le point du cercle a le même y que le centre
-        // Ce qui permet de faciliter les calculs par la suite
-        if(pCercle.getY() != centre.getY()){
-            pCercle.setX(Point.getDistance(pCercle,centre) + centre.getX());
-            pCercle.setY(centre.getY());
-        }
         this.pCercle = pCercle;
     }
 
+    /**
+     * @return Point sur le cercle
+     */
     public Point getpCercle() {
         return pCercle;
     }
 
+    /**
+     * @param pCercle : nouveau point sur le cercle
+     * Setter permettant de modifier le point sur le cercle
+     */
     public void setpCercle(Point pCercle) {
         this.pCercle = pCercle;
     }
 
+    /**
+     * @param centre : Centre du cercle
+     *  Setter permettant de modifier le centre du cercle
+     */
     public void setCentre(Point centre) {
         this.centre = centre;
     }
@@ -96,7 +106,9 @@ public class Cercle extends Forme  implements Transformation {
     @Override
     public Forme symetrieCentre(Point p) {
         Point newCentre = new Point(2*p.getX()-this.centre.getX(),2*p.getY()-this.centre.getY());
-        return new Cercle(newCentre,new Point(newCentre.getX()+this.getRayon(),newCentre.getY()));
+        Point newpCercle = new Point(2*p.getX()-this.pCercle.getX(),2*p.getY()-this.pCercle.getY());
+        System.out.print(newpCercle);
+        return new Cercle(newCentre,newpCercle);
     }
 
     @Override

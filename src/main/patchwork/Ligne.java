@@ -86,21 +86,25 @@ public class Ligne extends Forme implements Transformation {
     @Override
     public Forme rotation(Point p, double angle) {
         //Point centre = this.getCentre();
+
+
+        angle *= Math.PI / 180;
         Point A = new Point(
-            p.getX() + (pointA.getX() * Math.cos(angle) - pointA.getY() * Math.sin(angle)),
-            p.getY() + (pointA.getX() * Math.sin(angle) + pointA.getY() * Math.cos(angle))
+                ((pointA.getX() - p.getX())  * Math.cos(angle)) - ((pointA.getY() - p.getY()) * Math.sin(angle)) + p.getX(),
+                ((pointA.getX() - p.getX())  * Math.sin(angle)) - ((pointA.getY() - p.getY()) * Math.cos(angle)) + p.getY()
         );
         Point B = new Point(
-            p.getX() + (pointB.getX() * Math.cos(angle) - pointB.getY() * Math.sin(angle)),
-            p.getY() + (pointB.getX() * Math.sin(angle) + pointB.getY() * Math.cos(angle))
+                ((pointB.getX() - p.getX())  * Math.cos(angle)) - ((pointB.getY() - p.getY()) * Math.sin(angle)) + p.getX(),
+                ((pointB.getX() - p.getX())  * Math.sin(angle)) - ((pointB.getY() - p.getY()) * Math.cos(angle)) + p.getY()
         );
         return new Ligne(A,B);
     }
 
     @Override
     public Forme symetrieCentre(Point p) {
-        // TODO Auto-generated method stub
-        return null;
+        Point resA = new Point(2*p.getX()-this.pointA.getX(),2*p.getY()-this.pointA.getY());
+        Point resB = new Point(2*p.getX()-this.pointB.getX(),2*p.getY()-this.pointB.getY());
+        return new Ligne(resA,resB);
     }
 
     @Override

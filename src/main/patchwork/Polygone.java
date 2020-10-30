@@ -84,17 +84,11 @@ public class Polygone extends Forme implements Transformation{
                                           2
         */
             double res = 0;
-            Point precedent = null;
-            Point suivant = null;
-            Iterator<Point> iterator = this.points.iterator();
-            while (iterator.hasNext()){
-
-                precedent = precedent == null ? (Point) iterator.next() : precedent;
-                suivant = suivant == null ? (Point) iterator.next() : suivant;
-                System.out.println(precedent + " , " + suivant);
-                res += Point.getDistance(precedent,suivant);
-                precedent = suivant;
-                suivant = (Point) iterator.next();
+            List<Point> allPoints = this.getSortedPoints();
+            System.out.println("sdfghjk");
+            System.out.println(allPoints);
+            for(int i = 0 ; i < allPoints.size() ; i++){
+                if(i+1 < allPoints.size()) res += Point.getDistance(allPoints.get(i),allPoints.get(i+1));
             }
             //res += first.getX() * suivant.getY() - first.getY() * suivant.getX();
 
@@ -185,8 +179,19 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public Forme symetrieAxiale(Ligne l) {
-        // TODO Auto-generated method stub
-        return null;
+        // calcul de l'equation de la droite : y = coeficient * x + b
+        double coeficient = (l.getPointB().getY() - l.getPointA().getY()) / (l.getPointB().getX() - l.getPointA().getX());
+        double b = l.getPointA().getY() - (coeficient * l.getPointA().getX());
+        double coefficientBis = -1 / coeficient;
+
+        HashSet points = new HashSet();
+        for (Point p :this.getPoints()){
+            double bTemp = p.getY() - (p.getX() * coefficientBis);
+            double xTemp = (bTemp - b) / (coeficient - coefficientBis);
+            double yTemp = coefficientBis * xTemp + bTemp;
+            points.add(new Point(2*xTemp - p.getX(),2*yTemp - p.getY()));
+        }
+        return new Polygone(points);
     }
 
     public List<Point> getSortedPoints(){
@@ -198,16 +203,20 @@ public class Polygone extends Forme implements Transformation{
             if(pointsTries.size() == 0) pointsTries.add(courant);
             else{
                 System.out.println(pointsTries);
+                boolean isAdd = false;
                 for (int i = 0; i < pointsTries.size(); i++) {
                     Point point = pointsTries.get(i);
-                    if(this.less(courant, point)){ 
-                        System.out.println(courant.getX()+"-"+courant.getY()+">"+point.getX()+"-"+point.getY());
-                        pointsTries.add(courant);
+                    if(this.less(courant, point)){
+                        int index = i == 0 ? 0 : i-1;
+                        pointsTries.add(index,courant);
+                        isAdd = true;
+                        System.out.println("("+courant.getX()+","+courant.getY()+") < ("+point.getX()+","+point.getY()+")");
                         break;
                     }else{
-                        System.out.println(courant.getX()+"-"+courant.getY()+"<"+point.getX()+"-"+point.getY());
+                        System.out.println("("+courant.getX()+","+courant.getY()+") > ("+point.getX()+","+point.getY()+")");
                     }
                 }
+                if(!isAdd)pointsTries.add(courant);
             }
         }
         return pointsTries;

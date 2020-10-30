@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EllipseTest {
 
+    private static final double DELTA = 1e-2;
     private static Ellipse e;
     private static Point pAA;
     private static Point pAB;
@@ -65,16 +66,30 @@ class EllipseTest {
 
     @Test
     void rotation() {
-        assertFalse(true);
+        assertEquals(new Ellipse(new Point(4,6),new Ligne(new Point(4,7),new Point(4,5)), new Ligne(new Point(2,6),new Point(6,6))).getPoints(), e.rotation(new Point(2,4),90).getPoints());
     }
 
     @Test
     void symetrieCentre() {
-        assertFalse(true);
+        assertEquals(new Ellipse(new Point(8,0),new Ligne(new Point(7,0),new Point(9,0)),new Ligne(new Point(8,-2),new Point(8,2))).getPoints(), e.symetrieCentre(new Point(6,1)).getPoints());
     }
 
     @Test
     void symetrieAxiale() {
-        assertFalse(true);
+        Ellipse temp = (Ellipse) e.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
+        assertEquals(-2.46, temp.getCentre().getX(),DELTA);
+        assertEquals(6.31,temp.getCentre().getY(),DELTA);
+
+        assertEquals(-2.85, temp.getpetitAxe().getPointA().getX(),DELTA);
+        //assertEquals(7.23, temp.getpetitAxe().getPointA().getY(),DELTA);
+
+        assertEquals(-2.08,  temp.getpetitAxe().getPointB().getX(),DELTA);
+        assertEquals(5.38, temp.getpetitAxe().getPointB().getY(),DELTA);
+
+        assertEquals(-0.62,  temp.getgrandAxe().getPointA().getX(),DELTA);
+        assertEquals(7.08, temp.getgrandAxe().getPointA().getY(),DELTA);
+
+        assertEquals(-4.31,  temp.getgrandAxe().getPointB().getX(),DELTA);
+        assertEquals(5.54, temp.getgrandAxe().getPointB().getY(),DELTA);
     }
 }

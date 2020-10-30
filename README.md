@@ -47,8 +47,8 @@ getPerimetre      |   ✅   |    ❌    |   ✅    |
 
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
-translation       |   ✅   |    ❌    |   ✅    |
-rotation          |   ✅   |    ❌    |   ✅    |
+translation       |   ✅   |    ✅    |   ✅    |
+rotation          |   ✅   |    ✅    |   ✅    |
 homothetie        |   ❌   |    ❌    |   ✅    |
 symetrie axiale   |   ✅   |    ❌    |   ✅    |
 symetrie centrale |   ✅   |    ❌    |   ✅    |

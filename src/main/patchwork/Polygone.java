@@ -157,15 +157,16 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public Forme rotation(Point pRotation,double angle) {
-        Point centre = this.getCentre();
+        //Point centre = this.getCentre();
         HashSet<Point> newPoints = new HashSet<Point>();
-        Forme formeTranslate = this.translation(-centre.getX(), -centre.getY());
+
+        Forme formeTranslate = this.translation(-pRotation.getX(), -pRotation.getY());
         for(Point p : formeTranslate.getPoints()){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
-            double x = (p.getX() - pRotation.getX()) * Math.cos(angle) - (p.getY() - pRotation.getY()) * Math.sin(angle) + pRotation.getX();
-            double y = (p.getX() - pRotation.getX()) * Math.sin(angle) - (p.getY() - pRotation.getY()) * Math.cos(angle) + pRotation.getY();
-           /* double x = p.getX() * Math.cos(angle) - p.getY() * Math.sin(angle);
-            double y = p.getX() * Math.sin(angle) + p.getY() * Math.cos(angle);*/
-            newPoints.add(new Point(x,y));
+            //double x = (p.getX() - pRotation.getX()) * Math.cos(angle) - (p.getY() - pRotation.getY()) * Math.sin(angle) + pRotation.getX();
+            //double y = (p.getX() - pRotation.getX()) * Math.sin(angle) - (p.getY() - pRotation.getY()) * Math.cos(angle) + pRotation.getY();
+            double x = p.getX() * Math.cos(Math.toRadians(angle)) - p.getY() * Math.sin(Math.toRadians(angle));
+            double y = p.getX() * Math.sin(Math.toRadians(angle)) + p.getY() * Math.cos(Math.toRadians(angle));
+            newPoints.add(new Point(Math.round(x) + pRotation.getX(), Math.round(y) + pRotation.getY()));
         }
         return new Polygone(newPoints);
     }

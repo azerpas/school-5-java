@@ -5,6 +5,7 @@ import main.patchwork.Polygone;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -100,47 +101,31 @@ class PolygoneTest {
 
     @Test
     void translation() {
-        Point p00 = new Point(2, 4);
-        Point p30 = new Point(5, 4);
-        Point p33 = new Point(5, 7);
-        Point p03 = new Point(2, 7);
-        Point p60 = new Point(8, 4);
-        Point p63 = new Point(8, 7);
 
-        Set<Point> hashSetTriangle = new HashSet<Point>();
-        hashSetTriangle.add(p00);
-        hashSetTriangle.add(p30);
-        hashSetTriangle.add(p33);
-
-        Set<Point> hashSetCarre = new HashSet<Point>();
-        hashSetCarre.add(p00);
-        hashSetCarre.add(p30);
-        hashSetCarre.add(p33);
-        hashSetCarre.add(p03);
-
-        Set<Point> hashSetRectangle = new HashSet<Point>();
-        hashSetRectangle.add(p00);
-        hashSetRectangle.add(p60);
-        hashSetRectangle.add(p63);
-        hashSetRectangle.add(p03);
-        assertEquals(carre.translation(2,4).getPoints(),hashSetCarre);
-        assertEquals(triangle.translation(2,4).getPoints(),hashSetTriangle);
-        assertEquals(rectangle.translation(2,4).getPoints(),hashSetRectangle);
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(5,5), new Point(11,8), new Point(11,5), new Point(5,8))), rectangle.translation(5, 5).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(5,5), new Point(8,5), new Point(5,8), new Point(8,8))), carre.translation(5, 5).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(5,5), new Point(8,5), new Point(8,8))), triangle.translation(5, 5).getPoints());
     }
 
     @Test
     void homothetie() {
+        assertFalse(true);
     }
 
     @Test
     void rotation() {
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,-3), new Point(-6,-3), new Point(-6, 0))), rectangle.rotation(new Point(0,0), 180.00).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,-3), new Point(-3,-3), new Point(-3, 0))), carre.rotation(new Point(0,0), 180.00).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-3,0), new Point(-3,-3))), triangle.rotation(new Point(0,0), 180.00).getPoints());
     }
 
     @Test
     void symetrieCentre() {
+        assertFalse(true);
     }
 
     @Test
     void symetrieAxiale() {
+        assertFalse(true);
     }
 }

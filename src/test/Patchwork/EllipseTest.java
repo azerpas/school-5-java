@@ -60,17 +60,21 @@ class EllipseTest {
 
     @Test
     void homothetie() {
+        assertFalse(true);
     }
 
     @Test
     void rotation() {
+        assertFalse(true);
     }
 
     @Test
     void symetrieCentre() {
+        assertFalse(true);
     }
 
     @Test
     void symetrieAxiale() {
+        assertFalse(true);
     }
 }

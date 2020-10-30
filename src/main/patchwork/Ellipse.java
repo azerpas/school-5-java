@@ -47,7 +47,6 @@ public class Ellipse extends Forme implements Transformation {
     public double getPerimetre() {
         double a = Math.pow(this.grandAxe.getPerimetre()/2, 2);
         double b = Math.pow(this.petitAxe.getPerimetre()/2, 2);
-        System.out.println(a+" : " + b);
         return 2 * Math.PI * Math.sqrt((a + b) / 2);
     }
 

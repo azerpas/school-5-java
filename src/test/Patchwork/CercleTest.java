@@ -38,6 +38,7 @@ class CercleTest {
     void getPoints() {
         HashSet<Point> hashSet = new HashSet<Point>();
         hashSet.add(new Point(8,6));
+        hashSet.add(new Point(10,6));
         assertEquals(hashSet, c.getPoints());
     }
 
@@ -53,12 +54,12 @@ class CercleTest {
 
     @Test
     void rotation() {
-        assertEquals(new Cercle(new Point(4,10), new Point(2,2)), c.rotation(new Point(4,6),90));
+        assertEquals(new Cercle(new Point(4,10), new Point(6,10)), c.rotation(new Point(4,6),90));
     }
 
     @Test
     void symetrieCentre() {
-        assertEquals(new Cercle(new Point(4,-4), new Point(2,2)), c.symetrieCentre(new Point(6,1)));
+        assertEquals(new Cercle(new Point(4,-4), new Point(6,-4)), c.symetrieCentre(new Point(6,1)));
     }
 
     @Test
@@ -66,5 +67,7 @@ class CercleTest {
         Cercle temp = (Cercle) c.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
         assertEquals(-0.31, temp.getCentre().getX(),DELTA );
         assertEquals(11.54,temp.getCentre().getY(),DELTA);
+        assertEquals(-0.31+2, temp.getpCercle().getX(),DELTA );
+        assertEquals(11.54,temp.getpCercle().getY(),DELTA);
     }
 }

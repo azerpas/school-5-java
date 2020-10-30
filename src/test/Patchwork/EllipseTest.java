@@ -54,7 +54,7 @@ class EllipseTest {
 
     @Test
     void translation() {
-        assertEquals(e.translation(2,-2),new Ellipse(new Point(2,-2),new Ligne(new Point(3,-2),new Point(1,-2)),new Ligne(new Point(2,0),new Point(2,-4))));
+        assertEquals(e.translation(2,-2),new Ellipse(new Point(6,0),new Ligne(new Point(9,0),new Point(5,0)),new Ligne(new Point(2,0),new Point(2,-4))));
     }
 
     @Test

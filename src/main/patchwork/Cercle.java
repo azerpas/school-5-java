@@ -59,6 +59,7 @@ public class Cercle extends Forme  implements Transformation {
     public Set<Point> getPoints() {
         HashSet<Point> res = new HashSet<Point>();
         res.add(this.centre);
+        res.add(this.pCercle);
         return res;
     }
 

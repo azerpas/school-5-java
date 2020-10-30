@@ -64,6 +64,7 @@ public class Ellipse extends Forme implements Transformation {
     @Override
     public Forme translation(double x, double y) {
         Point newCentre = new Point(this.centre.getX()+x,this.centre.getY()+y);
+
         return new Ellipse(newCentre,(Ligne)this.petitAxe.translation(x,y),(Ligne)this.grandAxe.translation(x,y));
     }
 

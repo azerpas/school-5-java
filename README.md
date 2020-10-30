@@ -27,12 +27,32 @@ Les formes peuvent être générées aléatoirement ou lues dans un fichier (cla
 
 Pour itérer, il faut des collections itérables!      
 
+##Classe
+
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
 translation       |   ✅   |    ✅    |   ✅    |
-homothetie        |        |          |         |
-symetrie axiale   |   ✅   |          |         |
-symetrie centrale |   ✅   |          |         |
-getPoints         |        |    ✅    |   ✅    |
+rotation          |   ✅   |    ❌    |   ✅    |
+homothetie        |   ❌   |    ❌    |   ❌    |
+symetrie axiale   |   ✅   |    ❌    |   ❌    |
+symetrie centrale |   ✅   |    ❌    |   ❌    |
+getPoints         |   ❌   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ✅    |   ✅    |
+getAire           |   ✅   |    ❌    |   ✅    |
+getPerimetre      |   ✅   |    ❌    |   ✅    |
 
+##Test
+
+
+
+methode/classe    | Cercle | Polygone | Ellipse |
+----------------- | ------ | -------- |---------|
+translation       |   ✅   |    ❌    |   ❌    |
+rotation          |   ✅   |    ❌    |   ✅    |
+homothetie        |   ❌   |    ❌    |   ✅    |
+symetrie axiale   |   ✅   |    ❌    |   ✅    |
+symetrie centrale |   ✅   |    ❌    |   ✅    |
+getPoints         |   ✅   |    ✅    |   ✅    |
+getCentre         |   ✅   |    ❌    |   ✅    |
+getAire           |   ✅   |    ❌    |   ✅    |
+getPerimetre      |   ✅   |    ❌    |   ❌    |

@@ -11,15 +11,25 @@ import java.util.Set;
  */
 public class Cercle extends Forme  implements Transformation {
 
-    private double rayon;
+    private Point pCercle;
 
-    public Cercle(Point centre, double rayon) {
+    public Cercle(Point centre, Point pCercle) {
         super(centre);
-        this.rayon = rayon;
+        // Le point du cercle a le même y que le centre
+        // Ce qui permet de faciliter les calculs par la suite
+        if(pCercle.getY() != centre.getY()){
+            pCercle.setX(Point.getDistance(pCercle,centre) + centre.getX());
+            pCercle.setY(centre.getY());
+        }
+        this.pCercle = pCercle;
     }
 
-    public Point getCentre() {
-        return centre;
+    public Point getpCercle() {
+        return pCercle;
+    }
+
+    public void setpCercle(Point pCercle) {
+        this.pCercle = pCercle;
     }
 
     public void setCentre(Point centre) {
@@ -27,22 +37,22 @@ public class Cercle extends Forme  implements Transformation {
     }
 
     public double getRayon() {
-        return rayon;
+        return Point.getDistance(this.centre,this.pCercle);
     }
 
     public void setRayon(double rayon) {
-        this.rayon = rayon;
+        this.pCercle.setX(this.centre.getX() + rayon);
     }
 
 
     @Override
     public double getAire() {
-        return Math.pow(this.rayon,2) * Math.PI;
+        return Math.pow(this.getRayon(),2) * Math.PI;
     }
 
     @Override
     public double getPerimetre() {
-        return Math.PI*2*this.rayon;
+        return Math.PI*2*this.getRayon();
     }
 
     @Override
@@ -54,7 +64,7 @@ public class Cercle extends Forme  implements Transformation {
 
     @Override
     public Forme translation(double x, double y) {
-        return new Cercle(new Point(x,y),this.rayon);
+        return new Cercle(new Point(this.centre.getX()+x,this.centre.getY()+y),new Point(this.pCercle.getX()+x,this.pCercle.getY()+y));
     }
 
     @Override
@@ -71,7 +81,7 @@ public class Cercle extends Forme  implements Transformation {
                     (k * (p.getY() - this.centre.getY())) + this.centre.getY() // (2 * (0 - 1)) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5 && (2 * ( 0 - 1 )) + 1 = 1
             );
         }
-        return new Cercle(res,this.rayon * k);
+        return new Cercle(res,new Point(res.getX() + this.getRayon() * k,res.getY() ));
     }
 
     @Override
@@ -79,13 +89,20 @@ public class Cercle extends Forme  implements Transformation {
         angle *= Math.PI  / 180;
         double x2 = ((this.centre.getX() - p.getX()) * Math.cos(angle)) + ((this.centre.getY() - p.getY()) * Math.sin(angle)) + p.getX();
         double y2 = ((this.centre.getX() - p.getX()) * Math.sin(angle)) + ((this.centre.getY() - p.getY()) * Math.cos(angle)) + p.getY();
-        return new Cercle(new Point(x2,y2),this.rayon);
+        return new Cercle(new Point(x2,y2),new Point(x2+this.getRayon(),y2));
     }
 
     @Override
     public Forme symetrieCentre(Point p) {
         Point newCentre = new Point(2*p.getX()-this.centre.getX(),2*p.getY()-this.centre.getY());
-        return new Cercle(newCentre,this.rayon);
+        return new Cercle(newCentre,new Point(newCentre.getX()+this.getRayon(),newCentre.getY()));
+    }
+
+    @Override
+    public String toString() {
+        return "Cercle{" +
+                "pCercle=" + pCercle +
+                '}';
     }
 
     @Override
@@ -94,20 +111,12 @@ public class Cercle extends Forme  implements Transformation {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Cercle cercle = (Cercle) o;
-        return Double.compare(cercle.rayon, rayon) == 0;
+        return Objects.equals(pCercle, cercle.pCercle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), rayon);
-    }
-
-    @Override
-    public String toString() {
-        return "Cercle{" +
-                "rayon=" + rayon +
-                ", centre=" + centre +
-                '}';
+        return Objects.hash(super.hashCode(), pCercle);
     }
 
     @Override
@@ -132,6 +141,7 @@ public class Cercle extends Forme  implements Transformation {
         double xCentre = (bBis - b) / (coeficient - coefficientBis);
         double yCentre = coefficientBis * xCentre + bBis;
 
-        return new Cercle(new Point(2*xCentre - this.centre.getX(),2*yCentre - this.centre.getY()),this.rayon);
+        Point newCentre = new Point(2*xCentre - this.centre.getX(),2*yCentre - this.centre.getY());
+        return new Cercle(newCentre,new Point(newCentre.getX()+this.getRayon() , newCentre.getY()));
     }
 }

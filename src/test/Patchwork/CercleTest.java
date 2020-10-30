@@ -18,7 +18,7 @@ class CercleTest {
     private static Cercle c;
     @BeforeEach
     void setUp() {
-        c = new Cercle(new Point(8,6),2);
+        c = new Cercle(new Point(8,6),new Point(10,6));
     }
 
     @Test
@@ -38,29 +38,29 @@ class CercleTest {
 
     @Test
     void getPoints() {
-        Set hashSet = new HashSet<Point>();
+        HashSet hashSet = new HashSet<Point>();
         hashSet.add(new Point(8,6));
         assertEquals(hashSet, c.getPoints());
     }
 
     @Test
     void translation() {
-        assertEquals(new Cercle(new Point(), 2), c.translation(0, 0));
+        assertEquals(new Cercle(new Point(13,4), new Point(15,4)), c.translation(5, -2));
     }
 
     @Test
     void homothetie() {
-        assertEquals(new Cercle(new Point(16,14), 6), c.homothetie(c.getCentre(),3));
+        assertEquals(new Cercle(new Point(16,14), new Point(22,14)), c.homothetie(c.getCentre(),3));
     }
 
     @Test
     void rotation() {
-        assertEquals(new Cercle(new Point(4,10), 2), c.rotation(new Point(4,6),90));
+        assertEquals(new Cercle(new Point(4,10), new Point(2,2)), c.rotation(new Point(4,6),90));
     }
 
     @Test
     void symetrieCentre() {
-        assertEquals(new Cercle(new Point(4,-4), 2), c.symetrieCentre(new Point(6,1)));
+        assertEquals(new Cercle(new Point(4,-4), new Point(2,2)), c.symetrieCentre(new Point(6,1)));
     }
 
     @Test

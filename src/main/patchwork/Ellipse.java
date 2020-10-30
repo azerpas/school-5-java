@@ -3,6 +3,7 @@ package main.patchwork;
 import main.utils.Transformation;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -17,11 +18,6 @@ public class Ellipse extends Forme implements Transformation {
         this.petitAxe = petitAxe;
         this.grandAxe = grandAxe;
     }
-
-    public Point getCentre() {
-        return this.centre;
-    }
-
     public void setCentre(Point centre) {
         this.centre = centre;
     }
@@ -44,13 +40,13 @@ public class Ellipse extends Forme implements Transformation {
 
     @Override
     public double getAire() {
-        return Math.PI * petitAxe.getPerimetre() * grandAxe.getPerimetre();
+        return Math.PI * (petitAxe.getPerimetre()/2) * (grandAxe.getPerimetre()/2);
     }
 
     @Override
     public double getPerimetre() {
-        double a = Math.pow(this.grandAxe.getPerimetre(), 2);
-        double b = Math.pow(this.petitAxe.getPerimetre(), 2);
+        double a = Math.pow(this.grandAxe.getPerimetre()/2, 2);
+        double b = Math.pow(this.petitAxe.getPerimetre()/2, 2);
         return 2 * Math.PI * Math.sqrt((a + b) / 2);
     }
 
@@ -58,12 +54,17 @@ public class Ellipse extends Forme implements Transformation {
     public Set<Point> getPoints() {
         HashSet<Point> points = new HashSet<Point>();
         points.add(this.getCentre());
+        points.add(this.grandAxe.getPointA());
+        points.add(this.grandAxe.getPointB());
+        points.add(this.petitAxe.getPointA());
+        points.add(this.petitAxe.getPointB());
         return points;
     }
 
     @Override
     public Forme translation(double x, double y) {
-        return new Ellipse(new Point(x,y),this.petitAxe,this.grandAxe);
+        Point newCentre = new Point(this.centre.getX()+x,this.centre.getY()+y);
+        return new Ellipse(newCentre,(Ligne)this.petitAxe.translation(x,y),(Ligne)this.grandAxe.translation(x,y));
     }
 
     @Override
@@ -106,4 +107,23 @@ public class Ellipse extends Forme implements Transformation {
     public Forme symetrieAxiale(Ligne l) {
         return null;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Ellipse ellipse = (Ellipse) o;
+        System.out.println(Objects.equals(petitAxe, ellipse.petitAxe) &&
+                Objects.equals(grandAxe, ellipse.grandAxe));
+        return Objects.equals(petitAxe, ellipse.petitAxe) &&
+                Objects.equals(grandAxe, ellipse.grandAxe);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), petitAxe, grandAxe);
+    }
+
+
 }

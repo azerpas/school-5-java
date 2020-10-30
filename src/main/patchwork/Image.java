@@ -23,8 +23,6 @@ public class Image {
             Forme forme = ((Forme) i.next());
             double aireForme = forme.getAire();
 
-            if(forme instanceof Polygone)System.out.println(((Polygone) forme).area());
-
             res += aireForme;
         }
         return res;

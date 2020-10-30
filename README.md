@@ -26,3 +26,13 @@ Ainsi, le recouvrement des dessins et des formes n'est pas à gérer.
 Les formes peuvent être générées aléatoirement ou lues dans un fichier (classe Scanner vue en cours).     
 
 Pour itérer, il faut des collections itérables!      
+
+methode/classe    | Cercle | Polygone | Ellipse |
+----------------- | ------ | -------- |---------|
+translation       |   [x]  |    [x]   |   [x]   |
+homothetie        |   [ ]  |    [ ]   |   [ ]   |
+symetrie axiale   |   [x]  |    [ ]   |   [ ]   |
+symetrie centrale |   [x]  |    [ ]   |   [ ]   |
+getPoints         |   [ ]  |    [x]   |   [x]   |
+getCentre         |   [x]  |    [x]   |   [x]   |
+

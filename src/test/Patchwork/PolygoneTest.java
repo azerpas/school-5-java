@@ -59,20 +59,20 @@ class PolygoneTest {
         Point p60 = new Point(6, 0);
         Point p63 = new Point(6, 3);
 
-        Set hashSetTriangle = new HashSet<Point>();
+        Set<Point> hashSetTriangle = new HashSet<Point>();
         hashSetTriangle.add(p00);
         hashSetTriangle.add(p30);
         hashSetTriangle.add(p33);
         assertEquals(hashSetTriangle, triangle.getPoints());
 
-        Set hashSetCarre = new HashSet<Point>();
+        Set<Point> hashSetCarre = new HashSet<Point>();
         hashSetCarre.add(p00);
         hashSetCarre.add(p30);
         hashSetCarre.add(p33);
         hashSetCarre.add(p03);
         assertEquals(hashSetCarre, carre.getPoints());
 
-        Set hashSetRectangle = new HashSet<Point>();
+        Set<Point> hashSetRectangle = new HashSet<Point>();
         hashSetRectangle.add(p00);
         hashSetRectangle.add(p63);
         hashSetRectangle.add(p60);

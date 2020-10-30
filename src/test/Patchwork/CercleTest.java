@@ -3,12 +3,10 @@ package test.Patchwork;
 import main.patchwork.Cercle;
 import main.patchwork.Ligne;
 import main.patchwork.Point;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,7 +36,7 @@ class CercleTest {
 
     @Test
     void getPoints() {
-        HashSet hashSet = new HashSet<Point>();
+        HashSet<Point> hashSet = new HashSet<Point>();
         hashSet.add(new Point(8,6));
         assertEquals(hashSet, c.getPoints());
     }

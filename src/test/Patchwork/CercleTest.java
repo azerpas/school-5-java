@@ -13,61 +13,60 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CercleTest {
+    private static final double DELTA = 1e-2;
 
     private static Cercle c;
     @BeforeEach
     void setUp() {
-        c = new Cercle(new Point(2,2),1);
-        System.out.println("CERCLE TEST BEFORE : " +c);
+        c = new Cercle(new Point(8,6),2);
     }
 
     @Test
     void getCentre() {
-        System.out.println("CERCLE TEST getCentre : " +c);
-        assertEquals(c.getCentre(),new Point(2,2));
+        assertEquals(c.getCentre(),new Point(8,6));
     }
 
     @Test
     void getAire() {
-        assertEquals(c.getAire(),Math.PI*1);
+        assertEquals(c.getAire(),Math.PI*4);
     }
 
     @Test
     void getPerimetre() {
-        assertEquals(c.getPerimetre(),Math.PI*2);
+        assertEquals(c.getPerimetre(),Math.PI*4);
     }
 
     @Test
     void getPoints() {
         Set hashSet = new HashSet<Point>();
-        hashSet.add(c.getCentre());
-        System.out.println(hashSet);
-        System.out.println(c.getPoints());
+        hashSet.add(new Point(8,6));
         assertEquals(hashSet, c.getPoints());
     }
 
     @Test
     void translation() {
-        assertEquals(new Cercle(new Point(), 1), c.translation(0, 0));
+        assertEquals(new Cercle(new Point(), 2), c.translation(0, 0));
     }
 
     @Test
     void homothetie() {
-        assertEquals(new Cercle(new Point(2,2), 3), c.homothetie(c.getCentre(),3));
+        assertEquals(new Cercle(new Point(16,14), 6), c.homothetie(c.getCentre(),3));
     }
 
     @Test
     void rotation() {
-        assertEquals(new Cercle(new Point(1,3), 1), c.rotation(new Point(1,2),45));
+        assertEquals(new Cercle(new Point(4,10), 2), c.rotation(new Point(4,6),90));
     }
 
     @Test
     void symetrieCentre() {
-        assertEquals(new Cercle(new Point(0,2), 1), c.symetrieCentre(new Point(1,2)));
+        assertEquals(new Cercle(new Point(4,-4), 2), c.symetrieCentre(new Point(6,1)));
     }
 
     @Test
     void symetrieAxiale() {
-        assertEquals(new Cercle(new Point(0,2), 1), c.symetrieAxiale(new Ligne(new Point(1,0),new Point(1,4))));
+        Cercle temp = (Cercle) c.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
+        assertEquals(-0.31, temp.getCentre().getX(),DELTA );
+        assertEquals(11.54,temp.getCentre().getY(),DELTA);
     }
 }

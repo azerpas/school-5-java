@@ -15,7 +15,6 @@ public abstract class Forme{
     }
 
     public Forme(final Point centre){
-        System.out.println("FORME : "+centre);
         this.centre = centre;
     }
 

@@ -15,14 +15,24 @@ public class Ligne extends Forme implements Transformation {
         this.pointB = pointB;
     }
 
+    /**
+     * @return
+     */
     public Point getPointA() {
         return pointA;
     }
 
+    /**
+     * @param pointA
+     * Setter permettant de modifier le point a
+     */
     public void setPointA(Point pointA) {
         this.pointA = pointA;
     }
 
+    /**
+     * @return
+     */
     public Point getPointB() {
         return pointB;
     }

@@ -8,22 +8,38 @@ import java.util.Set;
 public class Dessin {
     private Set<Image> images;
 
+    /**
+     *
+     */
     public Dessin(){
         this.images = new HashSet<Image>();
     }
 
+    /**
+     * @param images
+     */
     public Dessin(final Set<Image> images){
         this.images = images;
     }
 
+    /**
+     * @return
+     */
     public Set<Image> getImages(){
         return this.images;
     }
 
+    /**
+     * @param i
+     * @return
+     */
     public boolean addImage(Image i){
         return this.images.add(i);
     }
 
+    /**
+     * @return
+     */
     public double getAire(){
         int res = 0;
         Iterator<Image> i = this.images.iterator();
@@ -34,6 +50,9 @@ public class Dessin {
         return res;
     }
 
+    /**
+     * @return
+     */
     public Dessin getCopie(){
         return new Dessin(this.images);
     }

@@ -13,27 +13,48 @@ public class Ellipse extends Forme implements Transformation {
     private Ligne petitAxe;
     private Ligne grandAxe;
 
+    /**
+     * @param centre
+     * @param petitAxe
+     * @param grandAxe
+     */
     public Ellipse(Point centre, Ligne petitAxe, Ligne grandAxe) {
         super(centre);
         this.petitAxe = petitAxe;
         this.grandAxe = grandAxe;
     }
+
+    /**
+     * @param centre
+     */
     public void setCentre(Point centre) {
         this.centre = centre;
     }
 
+    /**
+     * @return
+     */
     public Ligne getpetitAxe() {
         return petitAxe;
     }
 
+    /**
+     * @param petitAxe
+     */
     public void setpetitAxe(Ligne petitAxe) {
         this.petitAxe = petitAxe;
     }
 
+    /**
+     * @return
+     */
     public Ligne getgrandAxe() {
         return grandAxe;
     }
 
+    /**
+     * @param grandAxe
+     */
     public void setgrandAxe(Ligne grandAxe) {
         this.grandAxe = grandAxe;
     }

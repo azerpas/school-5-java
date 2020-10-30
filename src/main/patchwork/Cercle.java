@@ -46,10 +46,18 @@ public class Cercle extends Forme  implements Transformation {
         this.centre = centre;
     }
 
+    /**
+     *
+     * @return le rayon du Cercle (distance entre le centre et le point sur le cercle)
+     */
     public double getRayon() {
         return Point.getDistance(this.centre,this.pCercle);
     }
 
+    /**
+     * @param rayon : Nouveau rayon
+     * Setter permettant de modifier le rayon du cercle (deplacer le point sur le cercle)
+     */
     public void setRayon(double rayon) {
         this.pCercle.setX(this.centre.getX() + rayon);
     }

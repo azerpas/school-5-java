@@ -12,9 +12,17 @@ public class Image {
         formes = new HashSet<Forme>();
     }
 
+    /**
+     * @return
+     */
     public Set<Forme> getFormes(){
         return this.formes;
     }
+
+
+    /**
+     * @return
+     */
     public double getAire(){
         int res = 0;
         Iterator<Forme> i = this.formes.iterator();
@@ -28,6 +36,10 @@ public class Image {
         return res;
     }
 
+    /**
+     * @param f
+     * @return
+     */
     public boolean addForme(Forme f){
         return this.formes.add(f);
     }

@@ -5,6 +5,7 @@ import main.patchwork.Polygone;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -85,14 +86,9 @@ class PolygoneTest {
 
     @Test
     void getCentre() {
-//        double sumX = 0;
-//        double sumY = 0;
-//        for(Point p : this.points){
-//            sumX += p.getX();
-//            sumY += p.getY();
-//        }
-//        return new Point(sumX / this.points.size(), sumY / this.points.size());
-        rectangle.getCentre();
+        assertEquals(new Point(3, 1.5), rectangle.getCentre());
+        assertEquals(new Point(1.5, 1.5), carre.getCentre());
+        assertEquals(new Point(2, 1), triangle.getCentre());
     }
 
     @Test
@@ -101,6 +97,9 @@ class PolygoneTest {
 
     @Test
     void translation() {
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(5,5), new Point(11,8), new Point(11,5), new Point(5,8))), rectangle.translation(5, 5).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(5,5), new Point(8,5), new Point(5,8), new Point(8,8))), carre.translation(5, 5).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(5,5), new Point(8,5), new Point(8,8))), triangle.translation(5, 5).getPoints());
     }
 
     @Test
@@ -109,6 +108,9 @@ class PolygoneTest {
 
     @Test
     void rotation() {
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,-3), new Point(-6,-3), new Point(-6, 0))), rectangle.rotation(new Point(0,0), 180.00).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,-3), new Point(-3,-3), new Point(-3, 0))), carre.rotation(new Point(0,0), 180.00).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-3,0), new Point(-3,-3))), triangle.rotation(new Point(0,0), 180.00).getPoints());
     }
 
     @Test

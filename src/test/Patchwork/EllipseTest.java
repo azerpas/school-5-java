@@ -39,7 +39,7 @@ class EllipseTest {
 
     @Test
     void getPerimetre() {
-        assertEquals(e.getPerimetre(),2*Math.PI*Math.sqrt(8));
+        assertEquals(e.getPerimetre(),2*Math.PI*Math.sqrt(2.5));
     }
 
     @Test
@@ -54,7 +54,8 @@ class EllipseTest {
 
     @Test
     void translation() {
-        assertEquals(e.translation(2,-2),new Ellipse(new Point(6,0),new Ligne(new Point(9,0),new Point(5,0)),new Ligne(new Point(2,0),new Point(2,-4))));
+        Ellipse newEllipse = new Ellipse(new Point(6,0),new Ligne(new Point(7,0),new Point(5,0)),new Ligne(new Point(6,2),new Point(6,-2)));
+        assertEquals(e.translation(2,-2).getPoints(),newEllipse.getPoints());
     }
 
     @Test

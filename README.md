@@ -47,7 +47,7 @@ getPerimetre      |   ✅   |    ❌    |   ✅    |
 
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
-translation       |   ✅   |    ❌    |   ❌    |
+translation       |   ✅   |    ❌    |   ✅    |
 rotation          |   ✅   |    ❌    |   ✅    |
 homothetie        |   ❌   |    ❌    |   ✅    |
 symetrie axiale   |   ✅   |    ❌    |   ✅    |
@@ -55,4 +55,4 @@ symetrie centrale |   ✅   |    ❌    |   ✅    |
 getPoints         |   ✅   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ❌    |   ✅    |
 getAire           |   ✅   |    ❌    |   ✅    |
-getPerimetre      |   ✅   |    ❌    |   ❌    |
+getPerimetre      |   ✅   |    ❌    |   ✅    |

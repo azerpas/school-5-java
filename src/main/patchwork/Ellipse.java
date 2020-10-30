@@ -47,13 +47,13 @@ public class Ellipse extends Forme implements Transformation {
     public double getPerimetre() {
         double a = Math.pow(this.grandAxe.getPerimetre()/2, 2);
         double b = Math.pow(this.petitAxe.getPerimetre()/2, 2);
+        System.out.println(a+" : " + b);
         return 2 * Math.PI * Math.sqrt((a + b) / 2);
     }
 
     @Override
     public Set<Point> getPoints() {
         HashSet<Point> points = new HashSet<Point>();
-        points.add(this.getCentre());
         points.add(this.grandAxe.getPointA());
         points.add(this.grandAxe.getPointB());
         points.add(this.petitAxe.getPointA());

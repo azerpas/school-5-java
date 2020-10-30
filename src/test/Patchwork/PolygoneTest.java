@@ -37,8 +37,9 @@ class PolygoneTest {
         carre = new Polygone(h);
 
         rectangle = new Polygone();
-        rectangle.addPoint(p00);
+
         rectangle.addPoint(p60);
+        rectangle.addPoint(p00);
         rectangle.addPoint(p63);
         rectangle.addPoint(p03);
     }
@@ -74,8 +75,8 @@ class PolygoneTest {
 
         Set<Point> hashSetRectangle = new HashSet<Point>();
         hashSetRectangle.add(p00);
-        hashSetRectangle.add(p63);
         hashSetRectangle.add(p60);
+        hashSetRectangle.add(p63);
         hashSetRectangle.add(p03);
 
         assertEquals(hashSetRectangle, rectangle.getPoints());
@@ -85,22 +86,46 @@ class PolygoneTest {
 
     @Test
     void getCentre() {
-//        double sumX = 0;
-//        double sumY = 0;
-//        for(Point p : this.points){
-//            sumX += p.getX();
-//            sumY += p.getY();
-//        }
-//        return new Point(sumX / this.points.size(), sumY / this.points.size());
-        rectangle.getCentre();
+        assertEquals(rectangle.getCentre(),new Point(3,1.5));
+        assertEquals(carre.getCentre(),new Point(1.5,1.5));
+        assertEquals(triangle.getCentre(),new Point(2,1));
     }
 
     @Test
     void getPerimetre() {
+        assertEquals(rectangle.getPerimetre(),18);
+        assertEquals(carre.getPerimetre(),12);
+        assertEquals(triangle.getPerimetre(),9);
     }
 
     @Test
     void translation() {
+        Point p00 = new Point(2, 4);
+        Point p30 = new Point(5, 4);
+        Point p33 = new Point(5, 7);
+        Point p03 = new Point(2, 7);
+        Point p60 = new Point(8, 4);
+        Point p63 = new Point(8, 7);
+
+        Set<Point> hashSetTriangle = new HashSet<Point>();
+        hashSetTriangle.add(p00);
+        hashSetTriangle.add(p30);
+        hashSetTriangle.add(p33);
+
+        Set<Point> hashSetCarre = new HashSet<Point>();
+        hashSetCarre.add(p00);
+        hashSetCarre.add(p30);
+        hashSetCarre.add(p33);
+        hashSetCarre.add(p03);
+
+        Set<Point> hashSetRectangle = new HashSet<Point>();
+        hashSetRectangle.add(p00);
+        hashSetRectangle.add(p60);
+        hashSetRectangle.add(p63);
+        hashSetRectangle.add(p03);
+        assertEquals(carre.translation(2,4).getPoints(),hashSetCarre);
+        assertEquals(triangle.translation(2,4).getPoints(),hashSetTriangle);
+        assertEquals(rectangle.translation(2,4).getPoints(),hashSetRectangle);
     }
 
     @Test

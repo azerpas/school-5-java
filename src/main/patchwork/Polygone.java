@@ -70,19 +70,34 @@ public class Polygone extends Forme implements Transformation{
         for(Point p : this.points){
             sumX += p.getX();
             sumY += p.getY();
+
         }
         return new Point(sumX / this.points.size(), sumY / this.points.size());
     }
 
     @Override
     public double getPerimetre() {
-        double res = 0;
-        //for (Point p:this.points) {
-            //res += p.getLongueur();
-        //}
-        return res;
-    }
+        /*Version (x1 * y2 - y1 * x2) + ...  +(xn * y1 - yn * x1)
+                   ----------------------------------------------
+                                          2
+        */
+            double res = 0;
+            Point precedent = null;
+            Point suivant = null;
+            Iterator<Point> iterator = this.points.iterator();
+            while (iterator.hasNext()){
 
+                precedent = precedent == null ? (Point) iterator.next() : precedent;
+                suivant = suivant == null ? (Point) iterator.next() : suivant;
+                System.out.println(precedent + " , " + suivant);
+                res += Point.getDistance(precedent,suivant);
+                precedent = suivant;
+                suivant = (Point) iterator.next();
+            }
+            //res += first.getX() * suivant.getY() - first.getY() * suivant.getX();
+
+            return res / 2 ;
+    }
     @Override
     public String toString() {
 
@@ -95,7 +110,7 @@ public class Polygone extends Forme implements Transformation{
     public Forme translation(double x, double y) {
         HashSet<Point> newPoints = new HashSet<Point>();
         for(Point p : this.points){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
-            newPoints.add( 
+            newPoints.add(
                 new Point(
                     p.getX() + x, // 5 5 8
                     p.getY() + y //  5 8 5
@@ -119,14 +134,14 @@ public class Polygone extends Forme implements Transformation{
         HashSet<Point> newPoints = new HashSet<Point>();
         for(Point p : this.points){ // (0,0) (0,3) (3,0)
             if(p.getX() == 0.0 && p.getY() == 0.0){
-                newPoints.add( 
+                newPoints.add(
                     new Point( // scale par 0
                         k * p.getX() , // 0
                         k * p.getY() // 0
                     )
                 );
             }else{
-                newPoints.add( 
+                newPoints.add(
                     new Point( // On crée un nouveau point pour chaque ancien point pour la copie défensive
                         (k * ( p.getX() - point.getX() )) + point.getX(), // (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5
                         (k * ( p.getY() - point.getY() )) + point.getY() // (2 * (0 - 1)) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5 && (2 * ( 0 - 1 )) + 1 = 1
@@ -134,7 +149,7 @@ public class Polygone extends Forme implements Transformation{
                 );
             }
         }
-        // Ça scale mais ça ne nous permet pas de déplacer la forme 
+        // Ça scale mais ça ne nous permet pas de déplacer la forme
         // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Homothetic_transformation.svg/440px-Homothetic_transformation.svg.png
         // Il faudrait faire une translation en plus
         return (new Polygone(newPoints)/*.translation(centre.getX() + k, centre.getY() + k)*/);

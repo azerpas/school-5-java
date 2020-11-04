@@ -125,9 +125,31 @@ public class Ligne extends Forme implements Transformation {
     }
 
     @Override
-    public Forme symetrieAxiale(Ligne p) {
-        // TODO Auto-generated method stub
-        return null;
+    public Forme symetrieAxiale(Ligne l) {
+        // calcul de l'equation de la droite : y = coeficient * x + b
+        double coeficient = (l.getPointB().getY() - l.getPointA().getY()) / (l.getPointB().getX() - l.getPointA().getX());
+        double bL = l.getPointA().getY() - (coeficient * l.getPointA().getX());
+
+
+        double coefficientBis = -1 / coeficient;
+
+
+        double bA = this.pointA.getY() - (this.pointA.getX() * coefficientBis);
+        double xA = (bA - bL) / (coeficient - coefficientBis);
+        double yA = coefficientBis * xA + bA;
+        xA = (double)Math.round((2*xA - this.pointA.getX()) * 100) / 100;
+        yA = (double)Math.round((2*yA - this.pointA.getY()) * 100) / 100;
+        Point newA = new Point(xA,yA);
+
+
+        double bB = this.pointB.getY() - (this.pointB.getX() * coefficientBis);
+        double xB = (bB - bL) / (coeficient - coefficientBis);
+        double yB = coefficientBis * xB + bB;
+        xB = (double)Math.round((2*xB - this.pointB.getX()) * 100) / 100;
+        yB = (double)Math.round((2*yB - this.pointB.getY()) * 100) / 100;
+        Point newB = new Point(xB,yB);
+
+        return new Ligne(newA,newB);
     }
 
     @Override

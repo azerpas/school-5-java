@@ -167,15 +167,20 @@ class PolygoneTest {
         assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2), new Point(1.8,2.4))),tempCr.getPoints());
         assertEquals(new Point(-0.3,2.1),tempCr.getCentre());
     }
+  
+    @Test
+    @DisplayName("Vérifie que les points sont triés en horloge")
+    void sortedPoints(){
+        Polygone penta = new Polygone(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,5), new Point(6,3), new Point(6,0))));
+        assertEquals(
+            (Arrays.asList( new Point(3,5), new Point(6,3), new Point(6,0), new Point(0,0), new Point(0,3))),
+            penta.getSortedPoints(penta.getPoints())
+        );
+        Polygone hexa = new Polygone(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,5), new Point(6,3), new Point(6,0), new Point(4,-2))));
+        assertEquals(
+            (Arrays.asList( new Point(6,3), new Point(6,0), new Point(4,-2), new Point(0,0), new Point(0,3), new Point(3,5))),
+            hexa.getSortedPoints(hexa.getPoints())
+        );
+    }
 
-//    @Test
-//    @DisplayName("Vérifie que les points sont triés en horloge")
-//    void sortedPoints(){
-//        //Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
-//        System.out.println(carre);
-//        assertEquals(
-//            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(3,0), new Point(3,3), new Point(0,3))),
-//            carre.getSortedPoints()
-//        );
-//    }
 }

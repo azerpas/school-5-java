@@ -1,6 +1,11 @@
 package main.patchwork;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import main.utils.Transformation;
 
@@ -43,7 +48,7 @@ public class Polygone extends Forme implements Transformation{
         Point precedent = null;
         Point suivant = null;
         Point first = null;
-        Iterator<Point> iterator = this.points.iterator();
+        Iterator<Point> iterator = this.getSortedPoints(this.points).iterator();
         while (iterator.hasNext()){
             precedent = precedent == null ? first = (Point) iterator.next() : precedent;
             suivant = suivant == null ? (Point) iterator.next() : suivant;
@@ -214,56 +219,14 @@ public class Polygone extends Forme implements Transformation{
         return new Polygone(h);
     }
 
-    public List<Point> getSortedPoints(){
-        Iterator<Point> iterator = this.points.iterator();
-        ArrayList<Point> pointsTries = new ArrayList<Point>();
-        while (iterator.hasNext()){
-            Point courant = iterator.next();
-            System.out.println("Courant point: "+courant.getX()+"-"+courant.getY());
-            if(pointsTries.size() == 0) pointsTries.add(courant);
-            else{
-                System.out.println(pointsTries);
-                boolean isAdd = false;
-                for (int i = 0; i < pointsTries.size(); i++) {
-                    Point point = pointsTries.get(i);
-                    if(this.less(courant, point)){
-                        int index = i == 0 ? 0 : i-1;
-                        pointsTries.add(index,courant);
-                        isAdd = true;
-                        System.out.println("("+courant.getX()+","+courant.getY()+") < ("+point.getX()+","+point.getY()+")");
-                        break;
-                    }else{
-                        System.out.println("("+courant.getX()+","+courant.getY()+") > ("+point.getX()+","+point.getY()+")");
-                    }
-                }
-                if(!isAdd)pointsTries.add(courant);
-            }
-        }
-        return pointsTries;
+    public List<Point> getSortedPoints(Set<Point> pts) {
+        List<Point> points = new ArrayList<Point>(pts);
+        Point center = this.getCentre();
+        Collections.sort(points, (a, b) -> {
+            double a1 = (Math.toDegrees(Math.atan2(a.getX() - center.getX(), a.getY() - center.getY())) + 360) % 360;
+            double a2 = (Math.toDegrees(Math.atan2(b.getX() - center.getX(), b.getY() - center.getY())) + 360) % 360;
+            return (int) (a1 - a2);
+        });
+        return points;
     }
-
-    public boolean less(Point a, Point b)
-    {
-        Point centre = this.getCentre();
-        if (a.getX() - centre.getX() >= 0 && b.getX() - centre.getX() < 0)
-            return true;
-        if (a.getX() - centre.getX() < 0 && b.getX() - centre.getX() >= 0)
-            return false;
-        if (a.getX() - centre.getX() == 0 && b.getX() - centre.getX() == 0) {
-            if (a.getY() - centre.getY() >= 0 || b.getY() - centre.getY() >= 0)
-                return a.getY() > b.getY();
-            return b.getY() > a.getY();
-        }
-
-        double det = (a.getX() - centre.getX()) * (b.getY() - centre.getY()) - (b.getX() - centre.getX()) * (a.getY() - centre.getY());
-        if (det < 0)
-            return true;
-        if (det > 0)
-            return false;
-
-        double d1 = (a.getX() - centre.getX()) * (a.getX() - centre.getX()) + (a.getY() - centre.getY()) * (a.getY() - centre.getY());
-        double d2 = (b.getX() - centre.getX()) * (b.getX() - centre.getX()) + (b.getY() - centre.getY()) * (b.getY() - centre.getY());
-        return d1 > d2;
-    }
-
 }

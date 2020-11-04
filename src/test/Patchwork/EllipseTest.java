@@ -6,7 +6,6 @@ import main.patchwork.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -64,7 +63,7 @@ class EllipseTest {
     @Test
     void homothetie() {
         Ellipse ellipseTemp = (Ellipse) e.homothetie(new Point(12,6),-3);
-        HashSet h = new HashSet<Point>(Arrays.asList(new Point(39,18), new Point(36,12), new Point(33,18), new Point(36,24)));
+        HashSet<Point> h = new HashSet<Point>(Arrays.asList(new Point(39,18), new Point(36,12), new Point(33,18), new Point(36,24)));
         assertEquals(h,ellipseTemp.getPoints());
         assertEquals(ellipseTemp.getCentre(),new Point(36,18));
     }
@@ -86,7 +85,7 @@ class EllipseTest {
     @Test
     void symetrieAxiale() {
         Ellipse temp = (Ellipse) e.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
-        HashSet h = new HashSet<Point>(Arrays.asList(new Point(-2.85,7.23), new Point(-2.08,5.38), new Point(-0.62,7.08), new Point(-4.31, 5.54)));
+        HashSet<Point> h = new HashSet<Point>(Arrays.asList(new Point(-2.85,7.23), new Point(-2.08,5.38), new Point(-0.62,7.08), new Point(-4.31, 5.54)));
         assertEquals(-2.46, temp.getCentre().getX(),DELTA);
         assertEquals(6.31,temp.getCentre().getY(),DELTA);
         assertEquals(h,temp.getPoints());

@@ -101,7 +101,7 @@ class PolygoneTest {
     void getPerimetre() {
         assertEquals(rectangle.getPerimetre(),18);
         assertEquals(carre.getPerimetre(),12);
-        assertEquals(triangle.getPerimetre(),9);
+        assertEquals(triangle.getPerimetre(),10.24);
     }
 
     @Test

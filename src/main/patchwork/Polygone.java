@@ -81,20 +81,14 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public double getPerimetre() {
-        /*Version (x1 * y2 - y1 * x2) + ...  +(xn * y1 - yn * x1)
-                   ----------------------------------------------
-                                          2
-        */
-            double res = 0;
-            List<Point> allPoints = this.getSortedPoints(this.getPoints());
-            System.out.println("sdfghjk");
-            System.out.println(allPoints);
-            for(int i = 0 ; i < allPoints.size() ; i++){
-                if(i+1 < allPoints.size()) res += Point.getDistance(allPoints.get(i),allPoints.get(i+1));
-            }
-            //res += first.getX() * suivant.getY() - first.getY() * suivant.getX();
-
-            return res / 2 ;
+        double res = 0;
+        int i = 0;
+        List<Point> allPoints = this.getSortedPoints(this.getPoints());
+        for(i = 0 ; i < allPoints.size() ; i++){
+            if(i+1 < allPoints.size()) res += Point.getDistance(allPoints.get(i),allPoints.get(i+1));
+        }
+        res += Point.getDistance(allPoints.get(0),allPoints.get(i-1));
+        return Math.floor(res*100)/100 ;
     }
     @Override
     public String toString() {

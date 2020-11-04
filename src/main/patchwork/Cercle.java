@@ -88,13 +88,13 @@ public class Cercle extends Forme  implements Transformation {
 
     @Override
     public Forme homothetie(Point p, double k) {
-        double dx = Math.abs(p.getX() - this.centre.getX());
-        double dy = Math.abs(p.getY() - this.centre.getY());
-        Point res = new Point(p.getX() + dx*k,p.getY() + dy*k);
+        double newX = k *(this.centre.getX() - p.getX()) + p.getX();
+        double newY = k *(this.centre.getY() - p.getY()) + p.getY();
+        Point res = new Point(newX,newY);
 
-        double dxp = Math.abs(p.getX() - this.pCercle.getX());
-        double dyp = Math.abs(p.getY() - this.pCercle.getY());
-        Point resp = new Point(p.getX() + dxp*k,p.getY() + dyp*k);
+        double newXp = k *(this.pCercle.getX() - p.getX()) + p.getX();
+        double newYp = k *(this.pCercle.getY() - p.getY()) + p.getY();
+        Point resp = new Point(newXp,newYp);
 
         return new Cercle(res,resp);
     }

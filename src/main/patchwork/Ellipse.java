@@ -91,36 +91,32 @@ public class Ellipse extends Forme implements Transformation {
 
     @Override
     public Forme homothetie(Point p,double k) {
-        double dx = Math.abs(p.getX() - this.centre.getX());
-
-        double dy = Math.abs(p.getY() - this.centre.getY());
-        Point newCentre = new Point(p.getX() + dx*k,p.getY() + dy*k);
+        System.out.println(this.centre);
+        double newX = k *(this.centre.getX() - p.getX()) + p.getX();
+        double newY = k *(this.centre.getY() - p.getY()) + p.getY();
+        Point newCentre = new Point(newX,newY);
         int index = 0;
         Ligne l1 = null;
         Point[] pointsAxes = new Point[2];
         for(Point pointAxe : this.getPoints()){
-            double dxp = Math.abs(p.getX() - pointAxe.getX());
-            System.out.println(dxp);
-            double dyp = Math.abs(p.getY() - pointAxe.getY());
-            Point pointRes = new Point(p.getX() + dxp*k,p.getY() + dyp*k);
-            pointsAxes[index%2] = pointRes;
+            double newXpoint = k *(pointAxe.getX() - p.getX()) + p.getX();
+            double newYpoint = k *(pointAxe.getY() - p.getY()) + p.getY();
+            Point newPoint = new Point(newXpoint,newYpoint);
+            pointsAxes[index%2] = newPoint;
             if(index == 1){
                 l1 =new Ligne(pointsAxes);
                 pointsAxes = new Point[2];
             }
             index++;
         }
-        System.out.println(Arrays.toString(pointsAxes));
         return new Ellipse(newCentre,l1,new Ligne(pointsAxes));
     }
 
     @Override
     public Forme rotation(Point p,double angle) {
-
-
-        angle *= Math.PI / 180;
-        double x2 = ((this.centre.getX() - p.getX()) * Math.cos(angle)) - ((this.centre.getY() - p.getY()) * Math.sin(angle)) + p.getX();
-        double y2 = ((this.centre.getX() - p.getX()) * Math.sin(angle)) - ((this.centre.getY() - p.getY()) * Math.cos(angle)) + p.getY();
+        double angleRad = angle * Math.PI / 180;
+        double x2 = ((this.centre.getX() - p.getX()) * Math.cos(angleRad)) - ((this.centre.getY() - p.getY()) * Math.sin(angleRad)) + p.getX();
+        double y2 = ((this.centre.getX() - p.getX()) * Math.sin(angleRad)) - ((this.centre.getY() - p.getY()) * Math.cos(angleRad)) + p.getY();
         return new Ellipse(new Point(x2,y2),(Ligne)this.petitAxe.rotation(p,angle),(Ligne)this.grandAxe.rotation(p,angle));
     }
 

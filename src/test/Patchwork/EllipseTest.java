@@ -64,29 +64,31 @@ class EllipseTest {
     @Test
     void homothetie() {
         Ellipse ellipseTemp = (Ellipse) e.homothetie(new Point(12,6),-3);
-        HashSet h = new HashSet<Point>(Arrays.asList(new Point(33,18), new Point(36,12), new Point(39,18), new Point(36,24)));
-        assertEquals(ellipseTemp.getPoints(),h);
+        HashSet h = new HashSet<Point>(Arrays.asList(new Point(39,18), new Point(36,12), new Point(33,18), new Point(36,24)));
+        assertEquals(h,ellipseTemp.getPoints());
         assertEquals(ellipseTemp.getCentre(),new Point(36,18));
     }
 
     @Test
     void rotation() {
-        assertEquals(new Ellipse(new Point(4,6),new Ligne(new Point(4,7),new Point(4,5)), new Ligne(new Point(2,6),new Point(6,6))).getPoints(), e.rotation(new Point(2,4),90).getPoints());
+        Ellipse temp = (Ellipse) e.rotation(new Point(2,4),90);
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(4,7),new Point(4,5),new Point(2,6),new Point(6,6))), temp.getPoints());
+        assertEquals(new Point(4,6),temp.getCentre());
     }
 
     @Test
     void symetrieCentre() {
-        assertEquals(new Ellipse(new Point(8,0),new Ligne(new Point(7,0),new Point(9,0)),new Ligne(new Point(8,-2),new Point(8,2))).getPoints(), e.symetrieCentre(new Point(6,1)).getPoints());
+        Ellipse temp = (Ellipse)  e.symetrieCentre(new Point(6,1));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(7,0),new Point(9,0),new Point(8,-2),new Point(8,2))),temp.getPoints());
+        assertEquals(new Point(8,0),temp.getCentre());
     }
 
     @Test
     void symetrieAxiale() {
         Ellipse temp = (Ellipse) e.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
         HashSet h = new HashSet<Point>(Arrays.asList(new Point(-2.85,7.23), new Point(-2.08,5.38), new Point(-0.62,7.08), new Point(-4.31, 5.54)));
-
         assertEquals(-2.46, temp.getCentre().getX(),DELTA);
         assertEquals(6.31,temp.getCentre().getY(),DELTA);
-
         assertEquals(h,temp.getPoints());
 
     }

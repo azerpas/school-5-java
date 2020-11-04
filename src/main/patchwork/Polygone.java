@@ -114,34 +114,6 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public Forme homothetie(Point point, double k) {
-
-        //System.out.println(this.centre);
-        //        double newX = k *(this.centre.getX() - p.getX()) + p.getX();
-        //        double newY = k *(this.centre.getY() - p.getY()) + p.getY();
-        //        Point newCentre = new Point(newX,newY);
-        //        int index = 0;
-        //        Ligne l1 = null;
-        //        Point[] pointsAxes = new Point[2];
-        //        for(Point pointAxe : this.getPoints()){
-        //            double newXpoint = k *(pointAxe.getX() - p.getX()) + p.getX();
-        //            double newYpoint = k *(pointAxe.getY() - p.getY()) + p.getY();
-        //            Point newPoint = new Point(newXpoint,newYpoint);
-        //            pointsAxes[index%2] = newPoint;
-        //            if(index == 1){
-        //                l1 =new Ligne(pointsAxes);
-        //                pointsAxes = new Point[2];
-        //            }
-        //            index++;
-        //        }
-        //        return new Ellipse(newCentre,l1,new Ligne(pointsAxes));
-        // (0,0) (0,3) (3,3) (3,0) : Carré de 3x3cm
-        // Somme des X = 6  && Somme des Y = 6
-        // Centre du polygone (6/4,6/4) = (1.5,1.5)
-        // (0,0) (0,3) (3,0) : Triangle carré en (0,0)
-        // Somme des X = 3  && Somme des Y = 3
-        // Centre du polygone (3/3,3/3) = (1,1)
-
-        //Point centre = this.getCentre(); // (1,1)
         HashSet<Point> newPoints = new HashSet<Point>();
 
         for(Point pointCourant : this.getPoints()){

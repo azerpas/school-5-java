@@ -4,19 +4,27 @@
 https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/DessineMoiUnMouton.pdf     
 
 ## TODO
+🔵 Anthony 
+
+🟢 Martin
+
 - [X] Classes / Méthodes
 - [X] Tests unitaires
-- [ ] Fonction main:
-- [ ] 1. Boucle à choix
-- [ ] 2. Déroulement de l'algorithme automatique
-- [ ] 3. Lecture dans un fichier
-- [ ] Classe lecture d'un fichier (JSON?)
-- [ ] Javadoc
-- [ ] Mots-clés: final, static, const
-- [ ] Compléter le rapport
+- [ ]  Fonction main:
+
+   - [ ] Boucle à choix 🟢
+   
+   - [ ] Déroulement de l'algorithme automatique 🔵
+   
+   - [ ] Lecture dans un fichier 🔵
+   
+- [ ] Classe lecture d'un fichier (JSON?) 🔵
+- [ ] Javadoc (Anthony) 🔵
+- [ ] Mots-clés: final, static, const 🔵🟢
+- [ ] Compléter le rapport 🔵🟢
 
 ### Si le temps nous le permet
-- [ ] Branche avec Point qui implémente Transformation
+- [ ] Branche avec Point qui implémente Transformation 🟢
 
 ## Diagram
 

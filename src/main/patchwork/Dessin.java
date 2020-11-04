@@ -5,17 +5,24 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * A class representing a Drawing (Dessin)
+ */
 public class Dessin {
+    /**
+     * Drawing images set
+     */
     private Set<Image> images;
 
     /**
-     *
+     * Drawing constructor
      */
     public Dessin(){
         this.images = new HashSet<Image>();
     }
 
     /**
+     * Drawing constructor with an images parameter
      * @param images
      */
     public Dessin(final Set<Image> images){
@@ -23,6 +30,7 @@ public class Dessin {
     }
 
     /**
+     * Getting drawing images as a Set of Image
      * @return
      */
     public Set<Image> getImages(){
@@ -30,15 +38,17 @@ public class Dessin {
     }
 
     /**
+     * Add an Image entity to set of current images
      * @param i
      * @return
      */
-    public boolean addImage(Image i){
+    public boolean addImage(final Image i){
         return this.images.add(i);
     }
 
     /**
-     * @return
+     * Get drawing area
+     * @return res: double
      */
     public double getAire(){
         int res = 0;
@@ -51,7 +61,8 @@ public class Dessin {
     }
 
     /**
-     * @return
+     * Get a drawing copy
+     * @return Dessin entity
      */
     public Dessin getCopie(){
         return new Dessin(this.images);

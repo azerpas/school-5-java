@@ -9,16 +9,16 @@ import java.util.Set;
 /**
  * Represents a Circle form
  */
-public class Cercle extends Forme  implements Transformation {
+public class Cercle extends Forme implements Transformation {
 
     private Point pCercle;
 
     /**
      * @param centre  : centre du cercle
      * @param pCercle : point sur le cercle
-     * COnstructeur
+     * Constructeur
      */
-    public Cercle(Point centre, Point pCercle) {
+    public Cercle(final Point centre, final Point pCercle) {
         super(centre);
         this.pCercle = pCercle;
     }
@@ -34,7 +34,7 @@ public class Cercle extends Forme  implements Transformation {
      * @param pCercle : nouveau point sur le cercle
      * Setter permettant de modifier le point sur le cercle
      */
-    public void setpCercle(Point pCercle) {
+    public void setpCercle(final Point pCercle) {
         this.pCercle = pCercle;
     }
 
@@ -42,7 +42,7 @@ public class Cercle extends Forme  implements Transformation {
      * @param centre : Centre du cercle
      *  Setter permettant de modifier le centre du cercle
      */
-    public void setCentre(Point centre) {
+    public void setCentre(final Point centre) {
         this.centre = centre;
     }
 
@@ -58,7 +58,7 @@ public class Cercle extends Forme  implements Transformation {
      * @param rayon : Nouveau rayon
      * Setter permettant de modifier le rayon du cercle (deplacer le point sur le cercle)
      */
-    public void setRayon(double rayon) {
+    public void setRayon(final double rayon) {
         this.pCercle.setX(this.centre.getX() + rayon);
     }
 
@@ -82,12 +82,12 @@ public class Cercle extends Forme  implements Transformation {
     }
 
     @Override
-    public Forme translation(double x, double y) {
+    public Forme translation(final double x, final double y) {
         return new Cercle(new Point(this.centre.getX()+x,this.centre.getY()+y),new Point(this.pCercle.getX()+x,this.pCercle.getY()+y));
     }
 
     @Override
-    public Forme homothetie(Point p, double k) {
+    public Forme homothetie(final Point p, final double k) {
         double newX = k *(this.centre.getX() - p.getX()) + p.getX();
         double newY = k *(this.centre.getY() - p.getY()) + p.getY();
         Point res = new Point(newX,newY);
@@ -100,7 +100,7 @@ public class Cercle extends Forme  implements Transformation {
     }
 
     @Override
-    public Forme rotation(Point p,double angle) {
+    public Forme rotation(final Point p, double angle) {
         angle *= Math.PI  / 180;
         double x2 = ((this.centre.getX() - p.getX()) * Math.cos(angle)) + ((this.centre.getY() - p.getY()) * Math.sin(angle)) + p.getX();
         double y2 = ((this.centre.getX() - p.getX()) * Math.sin(angle)) + ((this.centre.getY() - p.getY()) * Math.cos(angle)) + p.getY();
@@ -111,7 +111,7 @@ public class Cercle extends Forme  implements Transformation {
     }
 
     @Override
-    public Forme symetrieCentre(Point p) {
+    public Forme symetrieCentre(final Point p) {
         Point newCentre = new Point(2*p.getX()-this.centre.getX(),2*p.getY()-this.centre.getY());
         Point newpCercle = new Point(2*p.getX()-this.pCercle.getX(),2*p.getY()-this.pCercle.getY());
         System.out.print(newpCercle);
@@ -140,7 +140,7 @@ public class Cercle extends Forme  implements Transformation {
     }
 
     @Override
-    public Forme symetrieAxiale(Ligne l) {
+    public Forme symetrieAxiale(final Ligne l) {
         // calcul de l'equation de la droite : y = coeficient * x + b
         double coeficient = (l.getPointB().getY() - l.getPointA().getY()) / (l.getPointB().getX() - l.getPointA().getX());
         double b = l.getPointA().getY() - (coeficient * l.getPointA().getX());

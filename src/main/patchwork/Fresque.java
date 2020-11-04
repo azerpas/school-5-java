@@ -7,6 +7,9 @@ import java.util.Set;
  * Represents a Fresque containing all the drawings (Dessin)
  */
 public class Fresque {
+    /**
+     * Fresque drawings as Dessin entity
+     */
     private Set<Dessin> dessins;
 
     public Fresque(){
@@ -26,7 +29,7 @@ public class Fresque {
      * @param d a drawing (Dessin) entity
      * @return boolean - push success
      */
-    public boolean addDessin(Dessin d){
+    public boolean addDessin(final Dessin d){
         return this.dessins.add(d);
     }
 

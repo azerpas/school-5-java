@@ -12,7 +12,6 @@ import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CercleTest {
-    private static final double DELTA = 1e-2;
 
     private static Cercle c;
     @BeforeEach

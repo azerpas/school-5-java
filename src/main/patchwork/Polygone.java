@@ -189,7 +189,7 @@ public class Polygone extends Forme implements Transformation{
             double bTemp = p.getY() - (p.getX() * coefficientBis);
             double xTemp = (bTemp - b) / (coeficient - coefficientBis);
             double yTemp = coefficientBis * xTemp + bTemp;
-            points.add(new Point(2*xTemp - p.getX(),2*yTemp - p.getY()));
+            points.add(new Point(Math.floor(2*xTemp - p.getX() * 10) / 10,Math.floor(2*yTemp - p.getY() * 10) / 10));
         }
         return new Polygone(points);
     }

@@ -2,6 +2,7 @@ package main.patchwork;
 
 import main.utils.Transformation;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -90,23 +91,27 @@ public class Ellipse extends Forme implements Transformation {
 
     @Override
     public Forme homothetie(Point p,double k) {
-        Point pointAA = new Point(
-                (k * ( this.petitAxe.getPointA().getX() - this.centre.getX() )) + this.centre.getX(),
-                (k * (  this.petitAxe.getPointA().getY() - this.centre.getY() )) + this.centre.getY()
-        );
-        Point pointAB = new Point(
-                (k * ( this.petitAxe.getPointB().getX() - this.centre.getX() )) + this.centre.getX(),
-                (k * (  this.petitAxe.getPointB().getY() - this.centre.getY() )) + this.centre.getY()
-        );
-        Point pointBA = new Point(
-                (k * ( this.grandAxe.getPointA().getX() - this.centre.getX() )) + this.centre.getX(),
-                (k * (  this.grandAxe.getPointA().getY() - this.centre.getY() )) + this.centre.getY()
-        );
-        Point pointBB = new Point(
-                (k * ( this.grandAxe.getPointB().getX() - this.centre.getX() )) + this.centre.getX(),
-                (k * (  this.grandAxe.getPointB().getY() - this.centre.getY() )) + this.centre.getY()
-        );
-        return new Ellipse(this.centre,new Ligne(pointAA,pointAB),new Ligne(pointBA,pointBB));
+        double dx = Math.abs(p.getX() - this.centre.getX());
+
+        double dy = Math.abs(p.getY() - this.centre.getY());
+        Point newCentre = new Point(p.getX() + dx*k,p.getY() + dy*k);
+        int index = 0;
+        Ligne l1 = null;
+        Point[] pointsAxes = new Point[2];
+        for(Point pointAxe : this.getPoints()){
+            double dxp = Math.abs(p.getX() - pointAxe.getX());
+            System.out.println(dxp);
+            double dyp = Math.abs(p.getY() - pointAxe.getY());
+            Point pointRes = new Point(p.getX() + dxp*k,p.getY() + dyp*k);
+            pointsAxes[index%2] = pointRes;
+            if(index == 1){
+                l1 =new Ligne(pointsAxes);
+                pointsAxes = new Point[2];
+            }
+            index++;
+        }
+        System.out.println(Arrays.toString(pointsAxes));
+        return new Ellipse(newCentre,l1,new Ligne(pointsAxes));
     }
 
     @Override
@@ -150,29 +155,26 @@ public class Ellipse extends Forme implements Transformation {
         double yCentre = coefficientBis * xCentre + bBis;
 
         Point newCentre = new Point(2*xCentre - this.centre.getX(),2*yCentre - this.centre.getY());
+        Point[] pointsAxes = new Point[2];
+        Ligne l1 = null;
+        int index = 0;
+        for(Point p : this.getPoints()){
+            double bPoint = p.getY() - (p.getX() * coefficientBis);
+            double x = (bPoint - b) / (coeficient - coefficientBis);
+            double y = coefficientBis * x + bPoint;
+            x = (double)Math.round((2*x - p.getX()) * 100) / 100;
+            y = (double)Math.round((2*y - p.getY()) * 100) / 100;
+            Point pointRes = new Point(x,y);
+            pointsAxes[index%2] = pointRes;
+            if(index == 1){
+                l1 =new Ligne(pointsAxes);
+                pointsAxes = new Point[2];
+            }
+            index++;
+        }
+        System.out.println(Arrays.toString(pointsAxes));
 
-
-        double bAA =this.petitAxe.getPointA().getY() - (this.petitAxe.getPointA().getX() * coefficientBis);
-        double xAA = (bAA - b) / (coeficient - coefficientBis);
-        double yAA = coefficientBis * xCentre + bAA;
-        Point pointAA = new Point(2*xAA - this.petitAxe.getPointA().getX(),2*yAA - this.petitAxe.getPointA().getY());
-
-        double bAB =this.petitAxe.getPointB().getY() - (this.petitAxe.getPointB().getX() * coefficientBis);
-        double xAB = (bAB - b) / (coeficient - coefficientBis);
-        double yAB = coefficientBis * xAB + bAB;
-        Point pointAB = new Point(2*xAB - this.petitAxe.getPointB().getX(),2*yAB - this.petitAxe.getPointB().getY());
-
-        double bBA =this.grandAxe.getPointA().getY() - (this.grandAxe.getPointA().getX() * coefficientBis);
-        double xBA = (bBA - b) / (coeficient - coefficientBis);
-        double yBA = coefficientBis * xBA + bBA;
-        Point pointBA = new Point(2*xBA - this.grandAxe.getPointA().getX(),2*yBA - this.grandAxe.getPointA().getY());
-
-        double bBB =this.grandAxe.getPointB().getY() - (this.grandAxe.getPointB().getX() * coefficientBis);
-        double xBB = (bBB - b) / (coeficient - coefficientBis);
-        double yBB = coefficientBis * xBB + bBB;
-        Point pointBB = new Point(2*xBB - this.grandAxe.getPointB().getX(),2*yBB - this.grandAxe.getPointB().getY());
-
-        return new Ellipse(newCentre,new Ligne(pointAA,pointAB),new Ligne(pointBA,pointBB));
+        return new Ellipse(newCentre,l1,new Ligne(pointsAxes));
     }
 
     @Override

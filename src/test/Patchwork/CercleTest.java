@@ -49,7 +49,7 @@ class CercleTest {
 
     @Test
     void homothetie() {
-        assertEquals(new Cercle(new Point(16,14), new Point(22,14)), c.homothetie(c.getCentre(),3));
+        assertEquals(new Cercle(new Point(44,26), new Point(50,26)), c.homothetie(new Point(-10,-4),3));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package main.patchwork;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,6 +14,13 @@ public class Ligne extends Forme implements Transformation {
     public Ligne(Point pointA, Point pointB) {
         this.pointA = pointA;
         this.pointB = pointB;
+    }
+
+    public Ligne(Point[] points){
+        if(points.length > 1){
+            this.pointA = points[0];
+            this.pointB = points[1];
+        }
     }
 
     /**

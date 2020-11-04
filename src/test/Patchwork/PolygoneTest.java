@@ -44,8 +44,8 @@ class PolygoneTest {
 
         rectangle.addPoint(p60);
         rectangle.addPoint(p00);
-        rectangle.addPoint(p63);
         rectangle.addPoint(p03);
+        rectangle.addPoint(p63);
     }
 
     @Test
@@ -129,9 +129,9 @@ class PolygoneTest {
 
     @Test
     void symetrieAxiale() {
-        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(-6,3), new Point(-6, 0))), rectangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
-        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(-3,3), new Point(-3, 0))), carre.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
-        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-3,0), new Point(-3,3))), triangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-4.8,3.6), new Point(0,0), new Point(1.8,2.4), new Point(-3, 6))), rectangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2), new Point(1.8,2.4))), carre.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2))), triangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
     }
 
     @Test

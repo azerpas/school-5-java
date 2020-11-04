@@ -28,6 +28,8 @@ class PolygoneTest {
         Point p03 = new Point(0, 3);
         Point p60 = new Point(6, 0);
         Point p63 = new Point(6, 3);
+
+
         triangle = new Polygone();
         triangle.addPoint(p00);
         triangle.addPoint(p30);
@@ -112,7 +114,19 @@ class PolygoneTest {
 
     @Test
     void homothetie() {
-        assertFalse(true);
+        Polygone tempTr = (Polygone) triangle.homothetie(new Point(6,-8),-2.5);
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(13.5,-35.5), new Point(21,-28), new Point(13.5,-28))), tempTr.getPoints());
+        assertEquals(new Point(16,-30.5),tempTr.getCentre());
+
+        Polygone tempRect = (Polygone) rectangle.homothetie(new Point(6,-8),-2.5);
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(6,-28), new Point(21,-28), new Point(21,-35.5), new Point(6,-35.5))),tempRect.getPoints());
+        assertEquals(new Point(13.5,-31.75),tempRect.getCentre());
+
+
+        Polygone tempCr = (Polygone) carre.homothetie(new Point(6,-8),-2.5);
+
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(21,-28), new Point(13.5,-28), new Point(13.5,-35.5), new Point(21,-35.5))), tempCr.getPoints());
+        assertEquals(new Point(17.25,-31.75),tempCr.getCentre());
     }
 
     @Test
@@ -124,25 +138,44 @@ class PolygoneTest {
 
     @Test
     void symetrieCentre() {
-        assertFalse(true);
+        Polygone tempTr = (Polygone) triangle.symetrieCentre(new Point(-5,-7));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-13,-17), new Point(-10,-14), new Point(-13,-14))), tempTr.getPoints());
+        assertEquals(new Point(-12,-15),tempTr.getCentre());
+
+        Polygone tempRect = (Polygone) rectangle.symetrieCentre(new Point(-5,-7));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-16,-14), new Point(-10,-14), new Point(-10,-17), new Point(-16,-17))), tempRect.getPoints());
+        assertEquals(new Point(-13,-15.5),tempRect.getCentre());
+
+
+        Polygone tempCr = (Polygone) carre.symetrieCentre(new Point(-5,-7));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-10,-14), new Point(-13,-14), new Point(-13,-17), new Point(-10,-17))),tempCr.getPoints());
+        assertEquals(new Point(-11.5,-15.5),tempCr.getCentre());
     }
 
     @Test
     void symetrieAxiale() {
-        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-4.8,3.6), new Point(0,0), new Point(1.8,2.4), new Point(-3, 6))), rectangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
-        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2), new Point(1.8,2.4))), carre.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
-        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2))), triangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3))).getPoints());
+        Polygone tempTr = (Polygone) triangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3)));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2))), tempTr.getPoints());
+        assertEquals(new Point(-1,2),tempTr.getCentre());
+
+        Polygone tempRect = (Polygone) rectangle.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3)));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-4.8,3.6), new Point(0,0), new Point(1.8,2.4), new Point(-3, 6))), tempRect.getPoints());
+        assertEquals(new Point(-1.5,3),tempRect.getCentre());
+
+
+        Polygone tempCr = (Polygone) carre.symetrieAxiale(new Ligne(new Point(0,0),new Point(1,3)));
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(-2.4,1.8), new Point(-0.6,4.2), new Point(1.8,2.4))),tempCr.getPoints());
+        assertEquals(new Point(-0.3,2.1),tempCr.getCentre());
     }
 
-    @Test
-    @DisplayName("Vérifie que les points sont triés en horloge")
-    void sortedPoints(){
-
-        //Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
-        System.out.println(carre);
-        assertEquals(
-            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(3,0), new Point(3,3), new Point(0,3))),
-            carre.getSortedPoints()
-        );
-    }
+//    @Test
+//    @DisplayName("Vérifie que les points sont triés en horloge")
+//    void sortedPoints(){
+//        //Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
+//        System.out.println(carre);
+//        assertEquals(
+//            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(3,0), new Point(3,3), new Point(0,3))),
+//            carre.getSortedPoints()
+//        );
+//    }
 }

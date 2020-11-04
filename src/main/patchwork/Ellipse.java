@@ -123,7 +123,6 @@ public class Ellipse extends Forme implements Transformation {
     @Override
     public Forme symetrieCentre(Point p) {
         Point newCentre = new Point(2*p.getX()-this.centre.getX(),2*p.getY()-this.centre.getY());
-        System.out.println(this.centre + " : " + newCentre + " : " + p);
         return new Ellipse(newCentre,(Ligne)this.petitAxe.symetrieCentre(p),(Ligne)this.grandAxe.symetrieCentre(p));
 
     }
@@ -168,7 +167,6 @@ public class Ellipse extends Forme implements Transformation {
             }
             index++;
         }
-        System.out.println(Arrays.toString(pointsAxes));
 
         return new Ellipse(newCentre,l1,new Ligne(pointsAxes));
     }

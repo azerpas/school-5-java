@@ -33,24 +33,26 @@ methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
 translation       |   ✅   |    ✅    |   ✅    |
 rotation          |   ✅   |    ❌    |   ✅    |
-homothetie        |   ❌   |    ❌    |   ❌    |
-symetrie axiale   |   ✅   |    ❌    |   ❌    |
-symetrie centrale |   ✅   |    ❌    |   ❌    |
-getPoints         |   ❌   |    ✅    |   ✅    |
+homothetie        |   ✅   |    ❌    |   ✅    |
+symetrie axiale   |   ✅   |    ❌    |   ✅    |
+symetrie centrale |   ✅   |    ❌    |   ✅    |
+getPoints         |   ✅   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ✅    |   ✅    |
 getAire           |   ✅   |    ❌    |   ✅    |
 getPerimetre      |   ✅   |    ❌    |   ✅    |
 
 ## Test
 
+
+
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
-translation       |   ✅   |    ✅    |   ❌    |
+translation       |   ✅   |    ✅    |   ✅    |
 rotation          |   ✅   |    ✅    |   ✅    |
-homothetie        |   ❌   |    ❌    |   ✅    |
+homothetie        |   ✅   |    ❌    |   ✅    |
 symetrie axiale   |   ✅   |    ❌    |   ✅    |
 symetrie centrale |   ✅   |    ❌    |   ✅    |
 getPoints         |   ✅   |    ✅    |   ✅    |
-getCentre         |   ✅   |    ✅    |   ✅    |
+getCentre         |   ✅   |    ❌    |   ✅    |
 getAire           |   ✅   |    ❌    |   ✅    |
-getPerimetre      |   ✅   |    ❌    |   ❌    |
+getPerimetre      |   ✅   |    ❌    |   ✅    |

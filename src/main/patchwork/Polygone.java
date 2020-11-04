@@ -74,18 +74,28 @@ public class Polygone extends Forme implements Transformation{
             sumX += p.getX();
             sumY += p.getY();
         }
-        return new Point(sumX / this.points.size(), sumY / this.points.size());
+        double x = Math.floor(sumX/this.points.size() * 100) / 100;
+        double y = Math.floor(sumY/this.points.size() * 100) / 100;
+        return new Point(x,y);
     }
 
     @Override
     public double getPerimetre() {
-        double res = 0;
-        //for (Point p:this.points) {
-            //res += p.getLongueur();
-        //}
-        return res;
-    }
+        /*Version (x1 * y2 - y1 * x2) + ...  +(xn * y1 - yn * x1)
+                   ----------------------------------------------
+                                          2
+        */
+            double res = 0;
+            List<Point> allPoints = this.getSortedPoints();
+            System.out.println("sdfghjk");
+            System.out.println(allPoints);
+            for(int i = 0 ; i < allPoints.size() ; i++){
+                if(i+1 < allPoints.size()) res += Point.getDistance(allPoints.get(i),allPoints.get(i+1));
+            }
+            //res += first.getX() * suivant.getY() - first.getY() * suivant.getX();
 
+            return res / 2 ;
+    }
     @Override
     public String toString() {
 
@@ -98,7 +108,7 @@ public class Polygone extends Forme implements Transformation{
     public Forme translation(double x, double y) {
         HashSet<Point> newPoints = new HashSet<Point>();
         for(Point p : this.points){ // (0,0) (0,3) (3,0) && (x,y): (5,5)
-            newPoints.add( 
+            newPoints.add(
                 new Point(
                     p.getX() + x, // 5 5 8
                     p.getY() + y //  5 8 5
@@ -111,6 +121,25 @@ public class Polygone extends Forme implements Transformation{
     @Override
     public Forme homothetie(Point point, double k) {
 
+        //System.out.println(this.centre);
+        //        double newX = k *(this.centre.getX() - p.getX()) + p.getX();
+        //        double newY = k *(this.centre.getY() - p.getY()) + p.getY();
+        //        Point newCentre = new Point(newX,newY);
+        //        int index = 0;
+        //        Ligne l1 = null;
+        //        Point[] pointsAxes = new Point[2];
+        //        for(Point pointAxe : this.getPoints()){
+        //            double newXpoint = k *(pointAxe.getX() - p.getX()) + p.getX();
+        //            double newYpoint = k *(pointAxe.getY() - p.getY()) + p.getY();
+        //            Point newPoint = new Point(newXpoint,newYpoint);
+        //            pointsAxes[index%2] = newPoint;
+        //            if(index == 1){
+        //                l1 =new Ligne(pointsAxes);
+        //                pointsAxes = new Point[2];
+        //            }
+        //            index++;
+        //        }
+        //        return new Ellipse(newCentre,l1,new Ligne(pointsAxes));
         // (0,0) (0,3) (3,3) (3,0) : Carré de 3x3cm
         // Somme des X = 6  && Somme des Y = 6
         // Centre du polygone (6/4,6/4) = (1.5,1.5)
@@ -120,27 +149,15 @@ public class Polygone extends Forme implements Transformation{
 
         //Point centre = this.getCentre(); // (1,1)
         HashSet<Point> newPoints = new HashSet<Point>();
-        for(Point p : this.points){ // (0,0) (0,3) (3,0)
-            if(p.getX() == 0.0 && p.getY() == 0.0){
-                newPoints.add( 
-                    new Point( // scale par 0
-                        k * p.getX() , // 0
-                        k * p.getY() // 0
-                    )
-                );
-            }else{
-                newPoints.add( 
-                    new Point( // On crée un nouveau point pour chaque ancien point pour la copie défensive
-                        (k * ( p.getX() - point.getX() )) + point.getX(), // (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 0 - 1 )) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5
-                        (k * ( p.getY() - point.getY() )) + point.getY() // (2 * (0 - 1)) + 1 = 1 && (2 * ( 3 - 1 )) + 1 = 5 && (2 * ( 0 - 1 )) + 1 = 1
-                    )
-                );
-            }
+
+        for(Point pointCourant : this.getPoints()){
+            double newXpoint = k *(pointCourant.getX() - point.getX()) + point.getX();
+            double newYpoint = k *(pointCourant.getY() - point.getY()) + point.getY();
+            Point newPoint = new Point(newXpoint,newYpoint);
+            newPoints.add(newPoint);
         }
-        // Ça scale mais ça ne nous permet pas de déplacer la forme 
-        // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Homothetic_transformation.svg/440px-Homothetic_transformation.svg.png
-        // Il faudrait faire une translation en plus
-        return (new Polygone(newPoints)/*.translation(centre.getX() + k, centre.getY() + k)*/);
+
+        return new Polygone(newPoints);
     }
 
     @Override
@@ -158,12 +175,13 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public Forme symetrieCentre(Point p) {
-        Point centre = this.getCentre();
+        //Point newCentre = new Point(2*p.getX()-this.centre.getX(),2*p.getY()-this.centre.getY());
+        //Point centre = this.getCentre();
         HashSet<Point> newPoints = new HashSet<Point>();
-        Forme formeTranslate = this.translation(-centre.getX(), -centre.getY());
-        for(Point pCourant : formeTranslate.getPoints()){
-            double x = (pCourant.getX()+p.getX())/2;
-            double y = (pCourant.getY()+p.getY())/2;
+        //Forme formeTranslate = this.translation(-centre.getX(), -centre.getY());
+        for(Point pCourant : this.getPoints()){
+            double x = 2*p.getX()-pCourant.getX();
+            double y = 2*p.getY()-pCourant.getY();
             newPoints.add(new Point(x,y));
         }
         return new Polygone(newPoints);
@@ -171,8 +189,34 @@ public class Polygone extends Forme implements Transformation{
 
     @Override
     public Forme symetrieAxiale(Ligne l) {
-        // TODO Auto-generated method stub
-        return null;
+        // calcul de l'equation de la droite : y = coeficient * x + b
+        double coeficient = (l.getPointB().getY() - l.getPointA().getY()) / (l.getPointB().getX() - l.getPointA().getX());
+        double b = l.getPointA().getY() - (coeficient * l.getPointA().getX());
+        /* Calcul de l'equation de la deuxieme droite (entre le centre et le centre symetrique) :
+         *   coefficient = 1 / coefficientPremiereDroite
+         *   donc yCentre = xCentre * coefficient + b
+         * */
+
+        double coefficientBis = -1 / coeficient;
+        /*
+        Soit les droites dont les équations sont y = x – 4 et y = –2x + 5, alors : x – 4 = –2x + 5. On représente ces droites dans un plan cartésien.
+        Donc : 3x = 9 et x = 3
+        Puis :  y = –1
+        Les coordonnées du point d’intersection de ces droites sont (3, –1).
+
+         */
+        HashSet h = new HashSet<Point>();
+        for(Point p : this.getPoints()){
+            double bPoint = p.getY() - (p.getX() * coefficientBis);
+            double x = (bPoint - b) / (coeficient - coefficientBis);
+            double y = coefficientBis * x + bPoint;
+            x = (double)Math.round((2*x - p.getX()) * 100) / 100;
+            y = (double)Math.round((2*y - p.getY()) * 100) / 100;
+            Point pointRes = new Point(x,y);
+            h.add(pointRes);
+        }
+
+        return new Polygone(h);
     }
 
     public List<Point> getSortedPoints(Set<Point> pts) {

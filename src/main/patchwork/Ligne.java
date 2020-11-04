@@ -1,5 +1,6 @@
 package main.patchwork;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,14 +16,31 @@ public class Ligne extends Forme implements Transformation {
         this.pointB = pointB;
     }
 
+    public Ligne(Point[] points){
+        if(points.length > 1){
+            this.pointA = points[0];
+            this.pointB = points[1];
+        }
+    }
+
+    /**
+     * @return
+     */
     public Point getPointA() {
         return pointA;
     }
 
+    /**
+     * @param pointA
+     * Setter permettant de modifier le point a
+     */
     public void setPointA(Point pointA) {
         this.pointA = pointA;
     }
 
+    /**
+     * @return
+     */
     public Point getPointB() {
         return pointB;
     }
@@ -64,23 +82,8 @@ public class Ligne extends Forme implements Transformation {
     }
     @Override
     public Forme translation(double x, double y) {
-        /*
-         pAA = new Point(8,6);
-        pAB = new Point(12,6);
-        pBA = new Point(10,0);
-        pBB = new Point(10,12);
-        e = new Ellipse(new Point(10,6),new Ligne(pAA,pAB),new Ligne(pBA,pBB));
-
-        centre de l'ellipse (10 , 6)
-        petitAxe : (8,6) (12,6)
-        petitAxe : (10,0) (10,12)
-
-        resultat normalement :
-        centre de l'ellipse (x,y)
-        petitAxe : (8 +/- x , 6 +/- y
-         */
         Point A = new Point(this.getPointA().getX()+x,this.getPointA().getY()+y);
-        Point B =new Point(this.getPointB().getX()+y,this.getPointB().getY()+y);
+        Point B =new Point(this.getPointB().getX()+x,this.getPointB().getY()+y);
         return new Ligne(A,B);
     }
 
@@ -101,21 +104,25 @@ public class Ligne extends Forme implements Transformation {
     @Override
     public Forme rotation(Point p, double angle) {
         //Point centre = this.getCentre();
+
+
+        angle *= Math.PI / 180;
         Point A = new Point(
-            p.getX() + (pointA.getX() * Math.cos(angle) - pointA.getY() * Math.sin(angle)),
-            p.getY() + (pointA.getX() * Math.sin(angle) + pointA.getY() * Math.cos(angle))
+                ((pointA.getX() - p.getX())  * Math.cos(angle)) - ((pointA.getY() - p.getY()) * Math.sin(angle)) + p.getX(),
+                ((pointA.getX() - p.getX())  * Math.sin(angle)) - ((pointA.getY() - p.getY()) * Math.cos(angle)) + p.getY()
         );
         Point B = new Point(
-            p.getX() + (pointB.getX() * Math.cos(angle) - pointB.getY() * Math.sin(angle)),
-            p.getY() + (pointB.getX() * Math.sin(angle) + pointB.getY() * Math.cos(angle))
+                ((pointB.getX() - p.getX())  * Math.cos(angle)) - ((pointB.getY() - p.getY()) * Math.sin(angle)) + p.getX(),
+                ((pointB.getX() - p.getX())  * Math.sin(angle)) - ((pointB.getY() - p.getY()) * Math.cos(angle)) + p.getY()
         );
         return new Ligne(A,B);
     }
 
     @Override
     public Forme symetrieCentre(Point p) {
-        // TODO Auto-generated method stub
-        return null;
+        Point resA = new Point(2*p.getX()-this.pointA.getX(),2*p.getY()-this.pointA.getY());
+        Point resB = new Point(2*p.getX()-this.pointB.getX(),2*p.getY()-this.pointB.getY());
+        return new Ligne(resA,resB);
     }
 
     @Override

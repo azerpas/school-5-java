@@ -86,7 +86,7 @@ public class Polygone extends Forme implements Transformation{
                                           2
         */
             double res = 0;
-            List<Point> allPoints = this.getSortedPoints();
+            List<Point> allPoints = this.getSortedPoints(this.getPoints());
             System.out.println("sdfghjk");
             System.out.println(allPoints);
             for(int i = 0 ; i < allPoints.size() ; i++){
@@ -205,7 +205,7 @@ public class Polygone extends Forme implements Transformation{
         Les coordonnées du point d’intersection de ces droites sont (3, –1).
 
          */
-        HashSet h = new HashSet<Point>();
+        HashSet<Point> h = new HashSet<Point>();
         for(Point p : this.getPoints()){
             double bPoint = p.getY() - (p.getX() * coefficientBis);
             double x = (bPoint - b) / (coeficient - coefficientBis);

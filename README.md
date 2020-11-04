@@ -49,10 +49,10 @@ methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
 translation       |   ✅   |    ✅    |   ✅    |
 rotation          |   ✅   |    ✅    |   ✅    |
-homothetie        |   ✅   |    ❌    |   ✅    |
-symetrie axiale   |   ✅   |    ❌    |   ✅    |
-symetrie centrale |   ✅   |    ❌    |   ✅    |
+homothetie        |   ✅   |    ✅    |   ✅    |
+symetrie axiale   |   ✅   |    ✅    |   ✅    |
+symetrie centrale |   ✅   |    ✅    |   ✅    |
 getPoints         |   ✅   |    ✅    |   ✅    |
-getCentre         |   ✅   |    ❌    |   ✅    |
-getAire           |   ✅   |    ❌    |   ✅    |
+getCentre         |   ✅   |    ✅    |   ✅    |
+getAire           |   ✅   |    ✅    |   ✅    |
 getPerimetre      |   ✅   |    ❌    |   ✅    |

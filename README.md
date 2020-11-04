@@ -20,7 +20,8 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
    
 - [ ] Classe lecture d'un fichier (JSON?) 🔵
 - [X] Javadoc (Anthony) 🔵
-- [ ] Mots-clés: final, static, const 🔵🟢
+- [X] Mots-clés: final, static, const 🔵🟢
+- [ ] Try/Catch
 - [ ] Compléter le rapport 🔵🟢
 
 ### Si le temps nous le permet

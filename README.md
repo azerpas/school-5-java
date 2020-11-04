@@ -3,13 +3,25 @@
 ## Sujet
 https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/DessineMoiUnMouton.pdf     
 
+## TODO
+- [X] Classes / Méthodes
+- [X] Tests unitaires
+- [ ] Fonction main:
+- [ ] 1. Boucle à choix
+- [ ] 2. Déroulement de l'algorithme automatique
+- [ ] 3. Lecture dans un fichier
+- [ ] Classe lecture d'un fichier (JSON?)
+- [ ] Javadoc
+- [ ] Mots-clés: final, static, const
+- [ ] Compléter le rapport
+
+### Si le temps nous le permet
+- [ ] Branche avec Point qui implémente Transformation
 
 ## Diagram
 
 https://app.diagrams.net    
 https://drive.google.com/file/d/1dVPSjFQF74Z0WybizJRSQcgkDVgsUDgV/view?usp=sharing
-
-![diagram1](https://raw.githubusercontent.com/azerpas/school-5-java/main/diagram.png?token=AETDRFIZTUHY6LSS7IFZUC27RWSOC)
 
 **Entités:**     
 - Forme
@@ -32,18 +44,16 @@ Pour itérer, il faut des collections itérables!
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
 translation       |   ✅   |    ✅    |   ✅    |
-rotation          |   ✅   |    ❌    |   ✅    |
-homothetie        |   ✅   |    ❌    |   ✅    |
-symetrie axiale   |   ✅   |    ❌    |   ✅    |
-symetrie centrale |   ✅   |    ❌    |   ✅    |
+rotation          |   ✅   |    ✅    |   ✅    |
+homothetie        |   ✅   |    ✅    |   ✅    |
+symetrie axiale   |   ✅   |    ✅    |   ✅    |
+symetrie centrale |   ✅   |    ✅    |   ✅    |
 getPoints         |   ✅   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ✅    |   ✅    |
-getAire           |   ✅   |    ❌    |   ✅    |
-getPerimetre      |   ✅   |    ❌    |   ✅    |
+getAire           |   ✅   |    ✅    |   ✅    |
+getPerimetre      |   ✅   |    ✅    |   ✅    |
 
 ## Test
-
-
 
 methode/classe    | Cercle | Polygone | Ellipse |
 ----------------- | ------ | -------- |---------|
@@ -55,4 +65,4 @@ symetrie centrale |   ✅   |    ✅    |   ✅    |
 getPoints         |   ✅   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ✅    |   ✅    |
 getAire           |   ✅   |    ✅    |   ✅    |
-getPerimetre      |   ✅   |    ❌    |   ✅    |
+getPerimetre      |   ✅   |    ✅    |   ✅    |

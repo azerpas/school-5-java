@@ -126,10 +126,15 @@ class PolygoneTest {
     @Test
     @DisplayName("Vérifie que les points sont triés en horloge")
     void sortedPoints(){
-        Polygone trigl = new Polygone(new HashSet<Point>(Arrays.asList(new Point(8,8), new Point(8,5), new Point(5,5))));
+        Polygone penta = new Polygone(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,5), new Point(6,3), new Point(6,0))));
         assertEquals(
-            new ArrayList<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,3), new Point(3,0))),
-            trigl.getSortedPoints()
+            (Arrays.asList( new Point(3,5), new Point(6,3), new Point(6,0), new Point(0,0), new Point(0,3))),
+            penta.getSortedPoints(penta.getPoints())
+        );
+        Polygone hexa = new Polygone(new HashSet<Point>(Arrays.asList(new Point(0,0), new Point(0,3), new Point(3,5), new Point(6,3), new Point(6,0), new Point(4,-2))));
+        assertEquals(
+            (Arrays.asList( new Point(6,3), new Point(6,0), new Point(4,-2), new Point(0,0), new Point(0,3), new Point(3,5))),
+            hexa.getSortedPoints(hexa.getPoints())
         );
     }
 }

@@ -104,7 +104,10 @@ public class Cercle extends Forme  implements Transformation {
         angle *= Math.PI  / 180;
         double x2 = ((this.centre.getX() - p.getX()) * Math.cos(angle)) + ((this.centre.getY() - p.getY()) * Math.sin(angle)) + p.getX();
         double y2 = ((this.centre.getX() - p.getX()) * Math.sin(angle)) + ((this.centre.getY() - p.getY()) * Math.cos(angle)) + p.getY();
-        return new Cercle(new Point(x2,y2),new Point(x2+this.getRayon(),y2));
+
+        double xPointCercle2 = ((this.pCercle.getX() - p.getX()) * Math.cos(angle)) + ((this.pCercle.getY() - p.getY()) * Math.sin(angle)) + p.getX();
+        double yPointCercle2 = ((this.pCercle.getX() - p.getX()) * Math.sin(angle)) + ((this.pCercle.getY() - p.getY()) * Math.cos(angle)) + p.getY();
+        return new Cercle(new Point(x2,y2),new Point(xPointCercle2,yPointCercle2));
     }
 
     @Override
@@ -147,7 +150,10 @@ public class Cercle extends Forme  implements Transformation {
         * */
 
         double coefficientBis = -1 / coeficient;
-        double bBis =this.centre.getY() - (this.centre.getX() * coefficientBis);
+
+        double bBis = this.centre.getY() - (this.centre.getX() * coefficientBis);
+        double bpCercle =this.pCercle.getY() - (this.pCercle.getX() * coefficientBis);
+
         /*
         Soit les droites dont les équations sont y = x – 4 et y = –2x + 5, alors : x – 4 = –2x + 5. On représente ces droites dans un plan cartésien.
         Donc : 3x = 9 et x = 3
@@ -155,10 +161,14 @@ public class Cercle extends Forme  implements Transformation {
         Les coordonnées du point d’intersection de ces droites sont (3, –1).
 
          */
-        double xCentre = (bBis - b) / (coeficient - coefficientBis);
-        double yCentre = coefficientBis * xCentre + bBis;
+        double xCentre =  (bBis - b) / (coeficient - coefficientBis);
+        double yCentre =  coefficientBis * xCentre + bBis;
 
-        Point newCentre = new Point(2*xCentre - this.centre.getX(),2*yCentre - this.centre.getY());
-        return new Cercle(newCentre,new Point(newCentre.getX()+this.getRayon() , newCentre.getY()));
+        double xPCercle =  (bpCercle - b) / (coeficient - coefficientBis);
+        double yPCercle =  coefficientBis * xPCercle + bpCercle;
+
+        Point newCentre = new Point(Math.floor((2*xCentre - this.centre.getX())*100)/100,Math.floor((2*yCentre - this.centre.getY())*100)/100);
+        Point newPoint = new Point(Math.floor((2*xPCercle - this.pCercle.getX())*100)/100,Math.floor((2*yPCercle - this.pCercle.getY())*100)/100);
+        return new Cercle(newCentre,newPoint);
     }
 }

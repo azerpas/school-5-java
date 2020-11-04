@@ -6,6 +6,7 @@ import main.patchwork.Point;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,7 +55,7 @@ class CercleTest {
 
     @Test
     void rotation() {
-        assertEquals(new Cercle(new Point(4,10), new Point(6,10)), c.rotation(new Point(4,6),90));
+        assertEquals(new Cercle(new Point(4,10), new Point(4,12)), c.rotation(new Point(4,6),90));
         //  assertEquals(new Cercle(new Point(4,2), new Point(5,2)).rotation(new Point(2,4),45).getPoints(), new Cercle(new Point(4,6), new Point(5,6)).getPoints());
     }
 
@@ -66,9 +67,6 @@ class CercleTest {
     @Test
     void symetrieAxiale() {
         Cercle temp = (Cercle) c.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
-        assertEquals(-0.31, temp.getCentre().getX(),DELTA);
-        assertEquals(11.54,temp.getCentre().getY(),DELTA);
-        assertEquals(-0.31+2, temp.getpCercle().getX(),DELTA );
-        assertEquals(11.54,temp.getpCercle().getY(),DELTA);
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-0.31,11.53),new Point(-1.08,13.38))),temp.getPoints());
     }
 }

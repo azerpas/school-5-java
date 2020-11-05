@@ -5,15 +5,25 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Represents an Image containing all the formes (Forme)
+ */
 public class Image {
+    /**
+     * Image forms as Forme entity
+     */
     private Set<Forme> formes;
 
+    /**
+     * Image constructor
+     */
     public Image(){
         formes = new HashSet<Forme>();
     }
 
     /**
-     * @return
+     * Get forms
+     * @return Set of Forme entity
      */
     public Set<Forme> getFormes(){
         return this.formes;
@@ -21,7 +31,8 @@ public class Image {
 
 
     /**
-     * @return
+     * Get Image area
+     * @return res: double
      */
     public double getAire(){
         int res = 0;
@@ -37,10 +48,11 @@ public class Image {
     }
 
     /**
+     * Add a form to current Set of Forme
      * @param f
      * @return
      */
-    public boolean addForme(Forme f){
+    public boolean addForme(final Forme f){
         return this.formes.add(f);
     }
 

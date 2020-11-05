@@ -4,6 +4,9 @@ import main.patchwork.Forme;
 import main.patchwork.Ligne;
 import main.patchwork.Point;
 
+/**
+ * An interface describing all the geometric transformations implementable
+ */
 public interface Transformation {
     /**
      * Translate form

@@ -6,16 +6,28 @@ import java.util.Set;
 
 import main.utils.Transformation;
 
+/**
+ * A class representing a Line form
+ */
 public class Ligne extends Forme implements Transformation {
     private Point pointA;
     private Point pointB;
 
-    public Ligne(Point pointA, Point pointB) {
+    /**
+     * Line constructor
+     * @param pointA 
+     * @param pointB
+     */
+    public Ligne(final Point pointA, final Point pointB) {
         this.pointA = pointA;
         this.pointB = pointB;
     }
 
-    public Ligne(Point[] points){
+    /**
+     * Line constructor
+     * @param points
+     */
+    public Ligne(final Point[] points){
         if(points.length > 1){
             this.pointA = points[0];
             this.pointB = points[1];
@@ -23,27 +35,33 @@ public class Ligne extends Forme implements Transformation {
     }
 
     /**
-     * @return
+     * Get PointA
+     * @return Point entity
      */
     public Point getPointA() {
         return pointA;
     }
 
     /**
+     * Set PointA
      * @param pointA
-     * Setter permettant de modifier le point a
      */
     public void setPointA(Point pointA) {
         this.pointA = pointA;
     }
 
     /**
+     * Get PointB
      * @return
      */
     public Point getPointB() {
         return pointB;
     }
 
+    /**
+     * Set PointB
+     * @param pointB
+     */
     public void setPointB(Point pointB) {
         this.pointB = pointB;
     }

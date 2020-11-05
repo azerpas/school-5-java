@@ -10,7 +10,7 @@ import java.util.Set;
 import main.utils.Transformation;
 
 /**
- * Represents a Polygon form
+ * A class representing a Polygon form
  */
 public class Polygone extends Forme implements Transformation{
     /**
@@ -18,22 +18,36 @@ public class Polygone extends Forme implements Transformation{
      */
     private Set<Point> points;
 
+    /**
+     * Polygon constructor
+     */
     public Polygone() {
         super();
         this.points = new HashSet<Point>();
     }
 
-    public Polygone(HashSet<Point> points) {
+    /**
+     * Polygon constructor
+     * @param points : HashSet of Point entity
+     */
+    public Polygone(final HashSet<Point> points) {
         super();
         this.points = points;
     }
 
-    public void setPoints(HashSet<Point> points) {
+    /**
+     * Set points from HashSet of Point entity
+     * @param points : HashSet of Point entity
+     */
+    public void setPoints(final HashSet<Point> points) {
         this.points = points;
     }
 
-
-    public void addPoint(Point p){
+    /**
+     * Add a point to current HashSet 
+     * @param p
+     */
+    public void addPoint(final Point p){
         this.points.add(p);
     }
 
@@ -185,6 +199,12 @@ public class Polygone extends Forme implements Transformation{
         return new Polygone(h);
     }
 
+    /**
+     * Get Point in a sorted array
+     * Used to get perimeter and area
+     * @param pts unordered list of points
+     * @return points in an ArrayList
+     */
     public List<Point> getSortedPoints(Set<Point> pts) {
         List<Point> points = new ArrayList<Point>(pts);
         Point center = this.getCentre();

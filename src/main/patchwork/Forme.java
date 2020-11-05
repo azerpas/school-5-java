@@ -8,12 +8,22 @@ import java.util.Set;
  */
 public abstract class Forme{
 
+    /**
+     * Form center
+     */
     protected Point centre;
 
+    /**
+     * Form constructor 
+     */
     public Forme(){
         this.centre = new Point();
     }
-
+    
+    /**
+     * Form constructor with a center
+     * @param centre
+     */
     public Forme(final Point centre){
         this.centre = centre;
     }

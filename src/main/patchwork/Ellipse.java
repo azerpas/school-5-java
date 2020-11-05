@@ -7,53 +7,59 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Represents an Ellipse form
+ * A class representing an Ellipse form
  */
 public class Ellipse extends Forme implements Transformation {
     private Ligne petitAxe;
     private Ligne grandAxe;
 
     /**
-     * @param centre
-     * @param petitAxe
-     * @param grandAxe
+     * Ellipse constructor
+     * @param centre ellipse center
+     * @param petitAxe smaller segment
+     * @param grandAxe bigger segment
      */
-    public Ellipse(Point centre, Ligne petitAxe, Ligne grandAxe) {
+    public Ellipse(final Point centre, final Ligne petitAxe, final Ligne grandAxe) {
         super(centre);
         this.petitAxe = petitAxe;
         this.grandAxe = grandAxe;
     }
 
     /**
-     * @param centre
+     * Set center
+     * @param centre : Point entity
      */
-    public void setCentre(Point centre) {
+    public void setCentre(final Point centre) {
         this.centre = centre;
     }
 
     /**
-     * @return
+     * Get smaller segment
+     * @return Ligne entity
      */
     public Ligne getpetitAxe() {
         return petitAxe;
     }
 
     /**
-     * @param petitAxe
+     * Set smaller segment
+     * @param petitAxe : Ligne entity
      */
     public void setpetitAxe(Ligne petitAxe) {
         this.petitAxe = petitAxe;
     }
 
     /**
-     * @return
+     * Get bigger segment
+     * @return Ligne entity
      */
     public Ligne getgrandAxe() {
         return grandAxe;
     }
 
     /**
-     * @param grandAxe
+     * Set bigger segment
+     * @param grandAxe : Ligne entity
      */
     public void setgrandAxe(Ligne grandAxe) {
         this.grandAxe = grandAxe;

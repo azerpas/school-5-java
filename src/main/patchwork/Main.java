@@ -1,8 +1,23 @@
 package main.patchwork;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.TreeMap;
 
 public class Main {
+
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BLACK = "\u001B[30m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_PURPLE = "\u001B[35m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_WHITE = "\u001B[37m";
+
+    private static final TreeMap<String,String> colors = new TreeMap<String,String>(){{put("black",ANSI_BLACK);put("red",ANSI_RED);put("green",ANSI_GREEN);put("blue",ANSI_BLUE);}};
+
     public static void main(String[] args){
         System.out.println("Création de la fresque");
         Fresque f = new Fresque();
@@ -12,56 +27,48 @@ public class Main {
         System.out.println("Ajout d'une image à ce dessin");
         Image i = new Image();
         d.addImage(i);
-        System.out.println("Création des côtés d'un TRIANGLE 00 => 30 => 33  Normalement : aire = 4.5");
+        System.out.println(printWithColor("\n###################### CERCLE #############################\n","red"));
+        Cercle c = new Cercle(new Point(9,6),new Point(10,9));
 
+        System.out.println("Creation d'un cercle de centre " +printWithColor(""+c.getCentre(),"blue") + " et de rayon "+printWithColor(""+c.getRayon(),"blue"));
+        System.out.println("Aire du Cercle = "+printWithColor(""+c.getAire(),"blue"));
+        System.out.println("Perimetre du Cercle = "+printWithColor(""+c.getPerimetre(),"blue"));
 
-        Point p00 = new Point(0, 0);
-        Point p30 = new Point(3, 0);
-        Point p33 = new Point(3, 3);
-        Point p03 = new Point(0, 3);
-        Point p60 = new Point(6, 0);
-        Point p63 = new Point(6, 3);
+        System.out.println(printWithColor("\n           _________ translation _________ ","green"));
+        System.out.println(" X = +5 \n Y = - 2");
+        Cercle temp = (Cercle) c.translation(5, -2);
+        System.out.println("nouveau centre du cercle : "+printWithColor(""+temp.getCentre(),"blue"));
 
-        /**
-         * TRIANGLE 00 => 30 => 33  Normalement : aire = 4.5
-         */
-        Polygone triangle = new Polygone();
-        triangle.addPoint(p00);
-        triangle.addPoint(p30);
-        triangle.addPoint(p33);
-        i.addForme(triangle);
+        System.out.println(printWithColor("\n           _________ homothetie _________ ","green"));
+        System.out.println("grace au Point(-10,-4) et de rapport 3");
+        temp = (Cercle) c.homothetie(new Point(-10,-4),3);
+        System.out.println("nouveau centre du cercle : "+printWithColor(""+temp.getCentre(),"blue"));
 
-        System.out.println("Création des côtés d'un CARRE 00 => 30 => 33 => 03 Normalement : aire = 9");
-        /**
-         * CARRE 00 => 30 => 33 => 03 Normalement : aire = 9
-         */
-        HashSet<Point> h = new HashSet<>();
-        h.add(p00);
-        h.add(p30);
-        h.add(p33);
-        h.add(p03);
-        Polygone carre = new Polygone(h);
-        i.addForme(carre);
+        System.out.println(printWithColor("\n           _________ rotation _________ ","green"));
+        System.out.println("autour du Point(4,6) et avec un angle de 90°");
+        temp = (Cercle) c.rotation(new Point(4,6),90);
+        System.out.println("nouveau centre du cercle : "+printWithColor(""+temp.getCentre(),"blue"));
 
-        System.out.println("Création des côtés d'un Rectangle 00 => 60 => 63 => 03  Normalement : aire = 18");
-        /**
-         * Rectangle 00 => 60 => 63 => 03  Normalement : aire = 18
-         */
+        System.out.println(printWithColor("\n           _________ symetrie centrale _________ ","green"));
+        System.out.println("grace au Point(6,1)");
+        temp = (Cercle) c.symetrieCentre(new Point(6,1));
+        System.out.println("nouveau centre du cercle : "+printWithColor(""+temp.getCentre(),"blue"));
 
-        Polygone rectangle = new Polygone();
-        rectangle.addPoint(p00);
-        rectangle.addPoint(p60);
-        rectangle.addPoint(p63);
-        rectangle.addPoint(p03);
-        i.addForme(rectangle);
+        System.out.println(printWithColor("\n           _________ symetrie axiale _________ ","green"));
+        System.out.println("grace aux Points (2,6) et (6,12)");
+        temp = (Cercle) c.symetrieAxiale(new Ligne(new Point(2,6),new Point(6,12)));
+        System.out.println("nouveau centre du cercle : "+ANSI_BLUE+temp.getCentre()+ANSI_RESET);
+        System.out.println(printWithColor("\n###################### ELLIPSE #############################\n","red"));
 
-        System.out.println(d.getAire());
-        System.out.println("Affichage de l'image");
-        System.out.println(i.toString());
-        System.out.println("Affichage du dessin");
-        System.out.println(d.toString());
-        System.out.println("Affichage de la fresque");
-        System.out.println(f.toString());
+        System.out.println(printWithColor("\n###################### POLYGONE #############################\n","red"));
+
 
     }
+
+
+    private static String printWithColor(String stringToPrint, String color){
+        return colors.get(color) + stringToPrint + ANSI_RESET;
+    }
+
+
 }

@@ -106,31 +106,32 @@ public class Ligne extends Forme implements Transformation {
 
     @Override
     public Forme homothetie(Point p, double k) {
-        //Point centre = this.getCentre();
         Point A = new Point(
-            (k * ( pointA.getX() - p.getX() )) + p.getX(),
-            (k * ( pointA.getY() - p.getY() )) + p.getY()
+            (k * ( pointA.getX() - p.getX())) + p.getX(),
+            (k * ( pointA.getY() - p.getY())) + p.getY()
         );
         Point B = new Point(
-            (k * ( pointB.getX() - p.getX() )) + p.getX(),
-            (k * ( pointB.getY() - p.getY() )) + p.getY()
+            (k * (pointB.getX() - p.getX())) + p.getX(),
+            (k * (pointB.getY() - p.getY())) + p.getY()
         );
-        return (new Ligne(A, B).translation(p.getX() + k, p.getY() + k));
+        return new Ligne(A, B);
     }
 
     @Override
     public Forme rotation(Point p, double angle) {
         //Point centre = this.getCentre();
-
+        //double angleRad = angle * Math.PI / 180;
+        //        double x2 = ((this.centre.getX() - p.getX()) * Math.cos(angleRad)) - ((this.centre.getY() - p.getY()) * Math.sin(angleRad)) + p.getX();
+        //        double y2 = ((this.centre.getX() - p.getX()) * Math.sin(angleRad)) - ((this.centre.getY() - p.getY()) * Math.cos(angleRad)) + p.getY();
 
         angle *= Math.PI / 180;
         Point A = new Point(
-                ((pointA.getX() - p.getX())  * Math.cos(angle)) - ((pointA.getY() - p.getY()) * Math.sin(angle)) + p.getX(),
-                ((pointA.getX() - p.getX())  * Math.sin(angle)) - ((pointA.getY() - p.getY()) * Math.cos(angle)) + p.getY()
+                Math.floor((((pointA.getX() - p.getX())  * Math.cos(angle)) - ((pointA.getY() - p.getY()) * Math.sin(angle)) + p.getX())*100)/100,
+                Math.floor((((pointA.getX() - p.getX())  * Math.sin(angle)) - ((pointA.getY() - p.getY()) * Math.cos(angle)) + p.getY())*100)/100
         );
         Point B = new Point(
-                ((pointB.getX() - p.getX())  * Math.cos(angle)) - ((pointB.getY() - p.getY()) * Math.sin(angle)) + p.getX(),
-                ((pointB.getX() - p.getX())  * Math.sin(angle)) - ((pointB.getY() - p.getY()) * Math.cos(angle)) + p.getY()
+                Math.floor((((pointB.getX() - p.getX())  * Math.cos(angle)) - ((pointB.getY() - p.getY()) * Math.sin(angle)) + p.getX())*100)/100,
+                Math.floor((((pointB.getX() - p.getX())  * Math.sin(angle)) - ((pointB.getY() - p.getY()) * Math.cos(angle)) + p.getY())*100)/100
         );
         return new Ligne(A,B);
     }

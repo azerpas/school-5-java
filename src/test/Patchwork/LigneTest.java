@@ -48,18 +48,21 @@ class LigneTest {
 
     @Test
     void homothetie() {
-        //assertEquals(new HashSet<Point>(Arrays.asList(new Point(40,28),new Point(25,73))),l.homothetie(new Point(-10,-7),5).getPoints());
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-36,-24),new Point(-21,-69))),l.homothetie(new Point(-6,-4),-5).getPoints());
     }
 
     @Test
     void rotation() {
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-3,7),new Point(-12,3.99))),l.rotation(new Point(-5,2),90).getPoints());
     }
 
     @Test
     void symetrieCentre() {
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(-12,-8),new Point(-9,-17))),l.symetrieCentre(new Point(-6,-4)).getPoints());
     }
 
     @Test
     void symetrieAxiale() {
+        assertEquals(new HashSet<Point>(Arrays.asList(new Point(18,-18),new Point(27,-21))),l.symetrieAxiale(new Ligne(new Point(4,-14),new Point(14,-4))).getPoints());
     }
 }

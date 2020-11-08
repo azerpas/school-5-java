@@ -16,9 +16,9 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
    
    - [ ] Déroulement de l'algorithme automatique 🔵
    
-   - [ ] Lecture dans un fichier 🔵
+   - [X] Lecture dans un fichier 🔵
    
-- [ ] Classe lecture d'un fichier (JSON?) 🔵
+- [X] Classe lecture d'un fichier (JSON?) 🔵
 - [X] Javadoc (Anthony) 🔵
 - [X] Mots-clés: final, static, const 🔵🟢
 - [ ] Try/Catch

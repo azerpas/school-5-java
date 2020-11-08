@@ -36,7 +36,7 @@ public class Fresque {
     @Override
     public String toString() {
         return "Fresque{" +
-                "dessins=\n   " + dessins +
+                "dessins=\n   " + dessins.toString() +
                 "\n}";
     }
 

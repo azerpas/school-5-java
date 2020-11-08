@@ -114,7 +114,6 @@ public class Cercle extends Forme implements Transformation {
     public Forme symetrieCentre(final Point p) {
         Point newCentre = new Point(2*p.getX()-this.centre.getX(),2*p.getY()-this.centre.getY());
         Point newpCercle = new Point(2*p.getX()-this.pCercle.getX(),2*p.getY()-this.pCercle.getY());
-        System.out.print(newpCercle);
         return new Cercle(newCentre,newpCercle);
     }
 

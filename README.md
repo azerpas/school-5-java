@@ -12,7 +12,7 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
 - [X] Tests unitaires
 - [ ]  Fonction main:
 
-   - [ ] Boucle à choix 🟢
+   - [X] Boucle à choix 🟢
    
    - [ ] Déroulement de l'algorithme automatique 🔵
    

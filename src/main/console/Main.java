@@ -1,8 +1,12 @@
 package main.console;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
+import main.patchwork.Cercle;
 import main.patchwork.Dessin;
+import main.patchwork.Ellipse;
 import main.patchwork.Fresque;
 import main.patchwork.Image;
 import main.patchwork.Ligne;
@@ -23,62 +27,113 @@ public class Main {
                 
                 case 1: // Ajout dessin
                     Dessin d = new Dessin();
-                    choix = -1;
-                    while(choix != 0){
+                    int choixDessin = -1;
+                    fresque.addDessin(d);
+                    while(choixDessin != 0){
                         Menu.showMenu("dessin");
-                        choix = Menu.chooseMenu(sc);
-                        switch(choix){
+                        choixDessin = Menu.chooseMenu(sc);
+                        switch(choixDessin){
 
                             case 1: // Ajout image
                                 Image i = new Image();
-                                choix = -1;
-                                while(choix != 0){
+                                d.addImage(i);
+                                int choixImage = -1;
+                                while(choixImage != 0){
                                     Menu.showMenu("image");
-                                    choix = Menu.chooseMenu(sc);
-                                    switch(choix){
+                                    choixImage = Menu.chooseMenu(sc);
+                                    switch(choixImage){
 
                                         case 1: // Ajout forme
-                                            choix = -1;
-                                            while(choix != 0){
+                                            int choixForme = -1;
+                                            while(choixForme != 0){
                                                 Menu.showMenu("forme");
-                                                choix = Menu.chooseMenu(sc);
-                                                switch(choix){
+                                                choixForme = Menu.chooseMenu(sc);
+                                                int[] xy = {}; // 
+                                                Point p1, p2, p3;
+                                                Ligne l1, l2;
+                                                switch(choixForme){
                                                     case 1: // Ligne
                                                         System.out.println("Définissez le premier point:");
-                                                        int[] xy = Menu.initPoint(sc);
-                                                        Point p1 = new Point(xy[0],xy[1]);
+                                                        xy = Menu.initPoint(sc);
+                                                        p1 = new Point(xy[0],xy[1]);
                                                         System.out.println("Définissez le deuxième point:");
                                                         xy = Menu.initPoint(sc);
-                                                        Point p2 = new Point(xy[0],xy[1]);
-                                                        Ligne l = new Ligne(p1, p2);
-                                                        i.addForme(l);
+                                                        p2 = new Point(xy[0],xy[1]);
+                                                        l1 = new Ligne(p1, p2);
+                                                        i.addForme(l1);
                                                         break;
                                                     case 2: // Cercle
+                                                        System.out.println("Définissez le centre du cercle:");
+                                                        xy = Menu.initPoint(sc);
+                                                        p1 = new Point(xy[0],xy[1]);
+                                                        System.out.println("Définissez un point pour qui la distance avec le centre représente le rayon:");
+                                                        xy = Menu.initPoint(sc);
+                                                        p2 = new Point(xy[0],xy[1]);
+                                                        Cercle c = new Cercle(p1,p2);
+                                                        i.addForme(c);
                                                         break;
                                                     case 3: // Ellipse
+                                                        System.out.println("Définissez le centre de l'ellipse:");
+                                                        xy = Menu.initPoint(sc);
+                                                        p1 = new Point(xy[0],xy[1]);
+                                                        System.out.println("Définissez un point pour qui la distance avec le centre représente le petit rayon:");
+                                                        xy = Menu.initPoint(sc);
+                                                        p2 = new Point(xy[0],xy[1]);
+                                                        System.out.println("Définissez un point pour qui la distance avec le centre représente le grand rayon:");
+                                                        xy = Menu.initPoint(sc);
+                                                        p3 = new Point(xy[0],xy[1]);
+                                                        l1 = new Ligne(p1, p2);
+                                                        l2 = new Ligne(p1, p3);
+                                                        Ellipse e = new Ellipse(p1, l1, l2);
                                                         break;
                                                     case 4: // Polygone
+                                                        Set<Point> pts = new HashSet<Point>();
+                                                        for(int j = 0; j < 3; j++){
+                                                            System.out.println("Définissez un point du Polygone (Étape "+j+"/3):");
+                                                            xy = Menu.initPoint(sc);
+                                                            // TODO: Try/Catch
+                                                            pts.add(new Point(xy[0], xy[1]));
+                                                        }
+                                                        boolean stop = false;
+                                                        while(!stop){
+                                                            System.out.println("1. Ajouter un point au polygone");
+                                                            System.out.println("0. Fin du polygone");
+                                                            int choixPolygone = Menu.chooseMenu(sc);
+                                                            switch(choixPolygone){
+                                                                case 1:
+                                                                    System.out.println("Définissez un point du Polygone:");
+                                                                    xy = Menu.initPoint(sc);
+                                                                    // TODO: Try/Catch
+                                                                    pts.add(new Point(xy[0], xy[1]));
+                                                                    break;
+                                                                case 0:
+                                                                    stop = true;
+                                                                    break;
+                                                            }
+                                                        }
+                                                        break;
+                                                    case 7: // Affichage de la fresque
+                                                        System.out.println(fresque.toString());
                                                         break;
                                                 }
                                             }
                                             break;
+                                        case 7: // Affichage de la fresque
+                                            System.out.println(fresque.toString());
+                                            break;
                                     }
                                 }
-
-                                d.addImage(i);
                                 break;
                             case 7: // Affichage de la fresque
-                                fresque.toString();
+                                System.out.println(fresque.toString());
                                 break;
                         }
                         
                     }
-                    fresque.addDessin(d);
                     break;
 
                 case 7: // Affichage de la fresque
-                    System.out.println("Voici la fresque: ");
-                    fresque.toString();
+                    System.out.println(fresque.toString());
                     break;
 
                 case 0: // Exit

@@ -71,8 +71,12 @@ public class Image {
 
     @Override
     public String toString() {
+        String fs = "";
+        for (Forme forme : formes) {
+            fs += forme.toString()+"\n";
+        }
         return "Image{" +
-                "formes=\n         " + formes  +
+                "formes=\n         " + fs  +
                 "\n      }";
     }
 }

@@ -35,8 +35,12 @@ public class Fresque {
 
     @Override
     public String toString() {
+        String ds = "";
+        for (Dessin dessin : dessins) {
+            ds += dessin.toString()+"\n";
+        }
         return "Fresque{" +
-                "dessins=\n   " + dessins.toString() +
+                "dessins=\n   " + ds +
                 "\n}";
     }
 

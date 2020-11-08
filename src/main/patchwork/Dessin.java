@@ -83,8 +83,12 @@ public class Dessin {
 
     @Override
     public String toString() {
+        String is = "";
+        for (Image image : images) {
+            is += image.toString() + "\n";
+        }
         return "Dessin{" +
-                "images=\n      " + images +
+                "images=\n      " + is +
                 "\n   }";
     }
 }

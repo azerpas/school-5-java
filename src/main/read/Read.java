@@ -1,5 +1,6 @@
 package main.read;
 
+import main.patchwork.Cercle;
 import main.patchwork.Dessin;
 import main.patchwork.Ellipse;
 import main.patchwork.Fresque;
@@ -112,6 +113,16 @@ public class Read{
                             }
                             break;
                         case "cercle":
+                            Cercle c = new Cercle(
+                                new Point(
+                                    forme.getJSONObject("p1").getDouble("x"), forme.getJSONObject("p1").getDouble("y")
+                                ), 
+                                new Point(
+                                    forme.getJSONObject("p2").getDouble("x"), forme.getJSONObject("p2").getDouble("y")
+                                )
+                            );
+                            image.addForme(c);
+                            break;
                         default: 
                             // wrong type throw
                             break;

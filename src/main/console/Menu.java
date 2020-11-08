@@ -3,15 +3,13 @@ package main.console;
 import java.util.Scanner;
 
 public class Menu {
-    public static int chooseMenu(){
-        Scanner sc = new Scanner(System.in);
+    public static int chooseMenu(Scanner sc){
         int choix = sc.nextInt();
+        sc.skip("((?<!\\R)\\s)*");
         if(choix < 0){
             System.out.print("Erreur.\nEntrez un numéro du menu: ");
-            sc.close();
-            return chooseMenu();
+            return chooseMenu(sc);
         }
-        sc.close();
         return choix;
     }
 

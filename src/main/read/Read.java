@@ -19,11 +19,45 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * The class needed to read files and especially JSON file representing a Fresque
+ * ------------
+ * JSON FORMAT:
+ * ------------
+ * 
+ * {
+ *  "dessins":[
+ *      {
+ *          "images":[
+ *              {
+ *                  "formes":[
+ *                      {
+ *                          "type": TYPE_ENUM,
+ *                          ...
+ *                      }
+ *                  ]
+ *              }
+ *          ]
+ *      }   
+ *  ]
+ * }
+ * 
+ * -----------
+ * TYPE_ENUM: ligne | cercle | polygone | ellipse
+ * 
+ * ligne attributes: p1, p2: Point
+ * cercle attributes: p1, p2: Point
+ * polygone attributes: pts: [Point]
+ * ellipse attributes: p1: Point, [ligne]
+ * 
+ * Point: {"x": double, "y": double}
+ */
 public class Read{
     /**
      * Read a JSON File from an absolute path
      * @param absolutePath the absolute path on current user session. Ex: C:/Users/Mickael/Documents/fresque.json
      * @return JSONObject
+     * @throws Error
      */
     public static JSONObject readJsonFile(String absolutePath) throws Error{
         StringBuilder rawJson = new StringBuilder();
@@ -48,6 +82,12 @@ public class Read{
         }
     }
 
+    /**
+     * Convert a JSONObject to a Fresque entity
+     * @param object JSONObject
+     * @return Fresque Entity
+     * @throws Error
+     */
     public static Fresque jsonToFresque(JSONObject object) throws Error{
         Fresque f = new Fresque();
         try {

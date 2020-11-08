@@ -75,3 +75,8 @@ getPoints         |   ✅   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ✅    |   ✅    |
 getAire           |   ✅   |    ✅    |   ✅    |
 getPerimetre      |   ✅   |    ✅    |   ✅    |
+
+## JARs
+
+- https://mvnrepository.com/artifact/org.json/json/20200518
+- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone/1.7.0

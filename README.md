@@ -1,7 +1,22 @@
 # school-5-java
 
 ## Sujet
-https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/DessineMoiUnMouton.pdf     
+https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/DessineMoiUnMouton.pdf  
+
+## Installation 
+
+`git clone https://github.com/azerpas/school-5-java.git`
+
+## JARs
+
+JARs nécessaires à la lecture de fichiers JSON et aux tests unitaires à télécharger et utiliser dans l'environnement de développement:
+- https://mvnrepository.com/artifact/org.json/json/20200518
+- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone/1.7.0
+
+
+## Diagram
+
+![DiagrameUML](./diagram.png?raw=true "Title")
 
 ## TODO
 🔵 Anthony 
@@ -26,12 +41,6 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
 
 ### Si le temps nous le permet
 - [ ] Branche avec Point qui implémente Transformation 🟢
-
-## Diagram
-
-https://app.diagrams.net    
-https://drive.google.com/file/d/1dVPSjFQF74Z0WybizJRSQcgkDVgsUDgV/view?usp=sharing
-![DiagrameUML](./diagram.png?raw=true "Title")
 
 **Entités:**     
 - Forme
@@ -76,8 +85,3 @@ getPoints         |   ✅   |    ✅    |   ✅    |
 getCentre         |   ✅   |    ✅    |   ✅    |
 getAire           |   ✅   |    ✅    |   ✅    |
 getPerimetre      |   ✅   |    ✅    |   ✅    |
-
-## JARs
-
-- https://mvnrepository.com/artifact/org.json/json/20200518
-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone/1.7.0

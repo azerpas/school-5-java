@@ -31,6 +31,7 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
 
 https://app.diagrams.net    
 https://drive.google.com/file/d/1dVPSjFQF74Z0WybizJRSQcgkDVgsUDgV/view?usp=sharing
+![DiagrameUML](./diagram.png?raw=true "Title")
 
 **Entités:**     
 - Forme

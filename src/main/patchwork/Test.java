@@ -2,7 +2,7 @@ package main.patchwork;
 
 import java.util.HashSet;
 
-public class Main {
+public class Test {
     public static void main(String[] args){
         System.out.println("Création de la fresque");
         Fresque f = new Fresque();

@@ -10,18 +10,18 @@ https://www.myefrei.fr/moodle/pluginfile.php/164567/mod_resource/content/2/Dessi
 
 - [X] Classes / Méthodes
 - [X] Tests unitaires
-- [ ]  Fonction main:
+- [X]  Fonction main:
 
    - [X] Boucle à choix 🟢
    
-   - [ ] Déroulement de l'algorithme automatique 🔵
+   - [X] Déroulement de l'algorithme automatique 🔵
    
    - [X] Lecture dans un fichier 🔵
    
 - [X] Classe lecture d'un fichier (JSON?) 🔵
 - [X] Javadoc (Anthony) 🔵
 - [X] Mots-clés: final, static, const 🔵🟢
-- [ ] Try/Catch
+- [X] Try/Catch
 - [ ] Compléter le rapport 🔵🟢
 
 ### Si le temps nous le permet

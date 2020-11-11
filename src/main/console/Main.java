@@ -12,6 +12,7 @@ import main.patchwork.Ellipse;
 import main.patchwork.Fresque;
 import main.patchwork.Image;
 import main.patchwork.Ligne;
+import main.patchwork.Test;
 import main.patchwork.Point;
 import main.read.Read;
 
@@ -26,6 +27,7 @@ public class Main {
         while(initExit != true){
             System.out.println("1. Modifier la fresque (Test en dur)");
             System.out.println("2. Charger une fresque depuis un fichier json (Test de fichier)");
+            System.out.println("3. Multiple batterie de tests (Test automatique)");
             System.out.println("0. Quitter le programme");
             int choice = sc.nextInt();
             sc.nextLine();
@@ -167,6 +169,9 @@ public class Main {
                     } catch (Exception e) {
                         System.out.println(e);
                     }
+                    break;
+                case 3:
+                    Test.main(null);
                     break;
                 case 0:
                     initExit = true;

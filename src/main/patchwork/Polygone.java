@@ -108,8 +108,8 @@ public class Polygone extends Forme implements Transformation{
     public String toString() {
 
         return super.toString()+"Polygone{" +
-                "points=\n            " + points +
-                "\n         }";
+                "points=" + points +
+                "}";
     }
 
     @Override

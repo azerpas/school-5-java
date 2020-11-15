@@ -37,10 +37,10 @@ public class Fresque {
     public String toString() {
         String ds = "";
         for (Dessin dessin : dessins) {
-            ds += dessin.toString()+"\n";
+            ds += "\n   "+dessin.toString();
         }
         return "Fresque{" +
-                "dessins=\n   " + ds +
+                "dessins=" + ds +
                 "\n}";
     }
 

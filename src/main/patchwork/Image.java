@@ -73,10 +73,10 @@ public class Image {
     public String toString() {
         String fs = "";
         for (Forme forme : formes) {
-            fs += forme.toString()+"\n";
+            fs += "\n         "+forme.toString();
         }
         return "Image{" +
-                "formes=\n         " + fs  +
+                "formes=" + fs  +
                 "\n      }";
     }
 }

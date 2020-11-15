@@ -85,10 +85,10 @@ public class Dessin {
     public String toString() {
         String is = "";
         for (Image image : images) {
-            is += image.toString() + "\n";
+            is += "\n      "+image.toString();
         }
         return "Dessin{" +
-                "images=\n      " + is +
+                "images=" + is +
                 "\n   }";
     }
 }

@@ -1,5 +1,6 @@
 package test.Read;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ import org.junit.jupiter.api.Assertions;
 class ReadTest {
     @Test
     @DisplayName("Retourne bien une fresque")
-    void testJson(){
+    void testJson() throws JSONException {
         String j = "{\"dessins\":[{\"images\":[{\"formes\":[{\"type\":\"ligne\",\"p1\":{\"x\":2,\"y\":3},\"p2\":{\"x\":0,\"y\":0}},{\"type\":\"cercle\",\"p1\":{\"x\":3,\"y\":0},\"p2\":{\"x\":9,\"y\":9}}]},{\"formes\":[{\"type\":\"polygone\",\"pts\":[{\"x\":2,\"y\":0},{\"x\":0,\"y\":0},{\"x\":0,\"y\":2}]},{\"type\":\"ellipse\",\"p1\":{\"x\":3,\"y\":3},\"lignes\":[{\"type\":\"ligne\",\"p1\":{\"x\":3,\"y\":3},\"p2\":{\"x\":9,\"y\":4}},{\"type\":\"ligne\",\"p1\":{\"x\":3,\"y\":3},\"p2\":{\"x\":15,\"y\":9}}]}]}]}]}";
         JSONObject obj = new JSONObject(j);
         Fresque f = new Fresque();

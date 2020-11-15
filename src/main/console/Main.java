@@ -4,16 +4,9 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import main.patchwork.*;
 import org.json.JSONObject;
 
-import main.patchwork.Cercle;
-import main.patchwork.Dessin;
-import main.patchwork.Ellipse;
-import main.patchwork.Fresque;
-import main.patchwork.Image;
-import main.patchwork.Ligne;
-import main.patchwork.Test;
-import main.patchwork.Point;
 import main.read.Read;
 
 public class Main {
@@ -99,9 +92,10 @@ public class Main {
                                                                     l1 = new Ligne(p1, p2);
                                                                     l2 = new Ligne(p1, p3);
                                                                     Ellipse e = new Ellipse(p1, l1, l2);
+                                                                    i.addForme(e);
                                                                     break;
                                                                 case 4: // Polygone
-                                                                    Set<Point> pts = new HashSet<Point>();
+                                                                    HashSet<Point> pts = new HashSet<Point>();
                                                                     for(int j = 0; j < 3; j++){
                                                                         System.out.println("Définissez un point du Polygone (Étape "+j+"/3):");
                                                                         xy = Menu.initPoint(sc);
@@ -118,12 +112,15 @@ public class Main {
                                                                                 xy = Menu.initPoint(sc);
                                                                                 // TODO: Try/Catch
                                                                                 pts.add(new Point(xy[0], xy[1]));
+
                                                                                 break;
                                                                             case 0:
                                                                                 stop = true;
                                                                                 break;
                                                                         }
                                                                     }
+                                                                    Polygone p = new Polygone(pts);
+                                                                    i.addForme(p);
                                                                     break;
                                                                 case 7: // Affichage de la fresque
                                                                     System.out.println(fresque.toString());

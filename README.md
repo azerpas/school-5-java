@@ -37,7 +37,7 @@ JARs nécessaires à la lecture de fichiers JSON et aux tests unitaires à tél�
 - [X] Javadoc (Anthony) 🔵
 - [X] Mots-clés: final, static, const 🔵🟢
 - [X] Try/Catch
-- [ ] Compléter le rapport 🔵🟢
+- [X] Compléter le rapport 🔵🟢
 
 ### Si le temps nous le permet
 - [ ] Branche avec Point qui implémente Transformation 🟢
